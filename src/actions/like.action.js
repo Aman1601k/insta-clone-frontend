@@ -1,0 +1,21 @@
+import axiosInstance from "../helpers/axios";
+import {postConstants} from './constants';
+import {getsubpost} from './allPost.action' 
+
+export const likepost = (id) => {
+    return async (dispatch) => {
+      try {
+        dispatch({ type: postConstants.LIKE_POST_REQUEST });
+        const res = await axiosInstance.put(`/like`,{postId:id});
+        if (res.status === 200){
+          dispatch(getsubpost())
+            dispatch({type: postConstants.LIKE_POST_SUCCESS,});
+        } else {
+          dispatch({ type: postConstants.LIKE_POST_FAILURE });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  };
+ 
