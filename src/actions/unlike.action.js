@@ -2,7 +2,7 @@ import axiosInstance from "../helpers/axios";
 import {postConstants} from './constants';
 import {getsubpost} from './allPost.action'
 
-export const unlikepost = (id) => {
+export const unlikepost = (id) => { 
     return async (dispatch) => {
       try {
         dispatch({ type: postConstants.UNLIKE_POST_REQUEST });

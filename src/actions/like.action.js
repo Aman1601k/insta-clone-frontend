@@ -2,7 +2,7 @@ import axiosInstance from "../helpers/axios";
 import {postConstants} from './constants';
 import {getsubpost} from './allPost.action' 
 
-export const likepost = (id) => {
+export const likepost = (id) => { 
     return async (dispatch) => {
       try {
         dispatch({ type: postConstants.LIKE_POST_REQUEST });

@@ -10,9 +10,9 @@ import {
   FullName,
   StyledBtn,
 } from './style';
-import  {newConversation}  from '../../actions';
+import  {newConversation, unfollowUser}  from '../../actions';
 
-const ModalSmall = ({data,onClick,onBtnClick}) => {
+const ModalSmall = ({details ,data,onClick,onBtnClick ,follower,following}) => {
   const auth = useSelector((state) => state.auth);
   const user = useSelector((state) => state.user);
   const convo = useSelector((state) => state.convo);
@@ -37,14 +37,16 @@ const ModalSmall = ({data,onClick,onBtnClick}) => {
     dispatch(newConversation(auth.user._id, id));
   };
 
-//   const UNfollow = (id) => {
-//     console.log(id);
-//     dispatch(unFollow(id)).then(() => dispatch(getFollowings(auth.user._id)));
-//   };
+  const UNfollow = (id) => {
+    console.log(id);
+    dispatch(unfollowUser(id));
+  };
 
   return (
     <NewChatModalWrapper>
-      { data &&
+      { 
+      data ?
+      data &&
           newData2.map((user) => {
             console.log("uuuuuuuu",user)
             return (
@@ -69,8 +71,34 @@ const ModalSmall = ({data,onClick,onBtnClick}) => {
                 </Content>
               </Parent>
             );
-          })
-       }
+          }) 
+          : details.map((user) => {
+            return (
+              <Parent>
+                <Content>
+                  <div className="main" onClick={onClick}>
+                    <Avatar src={user.profilePicture} />
+                    <span>
+                      <h3>aman</h3>
+                      {/* <FullName>{user.name}</FullName> */}
+                    </span>
+                  </div>
+                  <span>
+                    {following && (
+                      <StyledBtn
+                        style={{ cursor: user.followReq ? 'wait' : 'normal' }}
+                        onBtnClick={onBtnClick}
+                        onClick={() => UNfollow(user._id)}
+                      >
+                        Following
+                      </StyledBtn>
+                    )}
+                    {follower && <div></div>}
+                  </span>
+                </Content>
+              </Parent>
+            );
+          })}
     </NewChatModalWrapper>
   );
 };

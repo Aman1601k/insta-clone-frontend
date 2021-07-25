@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components/macro';
 export const Container = styled.div`
     border-bottom: 1px solid lightgrey;
     height: 54px;
+    background-color:#fff;
 `
 export const Wrapper = styled.div`
     display: flex;

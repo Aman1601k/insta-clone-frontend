@@ -6,6 +6,8 @@ import CustomModal from "../home/PostModal";
 import PostsContainer from './PostsContainer/PostsContainer'
 import {useDispatch, useSelector} from 'react-redux'
 import { mypost, updateBio, updateProfilePicture } from '../../actions';
+import ModalContainer from '../ModalSmall/ModalContainer';
+import ChatModal from '../ModalSmall/ChatModal';
 
 const Profile = () => {
     const [picture, setPicture] = useState('')
@@ -14,7 +16,10 @@ const Profile = () => {
     const dispatch = useDispatch();
     const post = useSelector((state) => state.post);
     const auth = useSelector((state) => state.auth);
+    const user = useSelector((state) => state.user);
     const [open, setOpen] = useState(false);
+    const [followerModal, setFollowerModal] = useState(false);
+    const [followingModal, setFollowingModal] = useState(false);
 
     const profileUpdate = () => {
         const data = new FormData()
@@ -57,6 +62,23 @@ const Profile = () => {
         setOpen(false);
     };
 
+    const openFollower = () => {
+        setFollowerModal(true);
+      };
+    
+    const closeFollower = () => {
+        setFollowerModal(false);
+    };
+
+    const openFollowing = () => {
+        setFollowingModal(true);
+        // console.log("Open")
+    };
+
+    const closeFollowing = () => {
+        setFollowingModal(false);
+    };
+
     return (
         <>
         <Header>
@@ -72,8 +94,8 @@ const Profile = () => {
                 </NameSection>
                 <FollowerSection>
                     <AnchorTag><span><strong>{post.mypost.length}</strong></span>  posts</AnchorTag>
-                    <AnchorTag><span><strong>{auth.user?.followers?.length}</strong></span>  followers</AnchorTag>
-                    <AnchorTag><span><strong>{auth.user?.following?.length}</strong></span>  following</AnchorTag>
+                    <AnchorTag onClick={openFollower}><span><strong>{auth.user?.followers?.length}</strong></span>  followers</AnchorTag>
+                    <AnchorTag onClick={openFollowing}><span><strong>{auth.user?.following?.length}</strong></span>  following</AnchorTag>
                 </FollowerSection>
                 <BioSection>
                     <strong>{auth.user.name}</strong>
@@ -108,6 +130,17 @@ const Profile = () => {
                 </div>  
             </Container>
         </CustomModal>
+        {auth?.user?.followers?.length > 0 && (
+            <ModalContainer open={followerModal} handleClose={closeFollower}>
+                <ChatModal details={auth.user.followers} follower={true} />
+            </ModalContainer>
+        )}
+
+        {auth?.user?.following?.length > 0 && (
+            <ModalContainer open={followingModal} handleClose={closeFollowing}>
+                <ChatModal details={auth.user.following} following={true} />
+            </ModalContainer>
+        )}
         </>
     )
 }

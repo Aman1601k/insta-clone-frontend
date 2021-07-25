@@ -37,6 +37,22 @@ function App() {
     
   }, [auth.authenticate])
 
+  useEffect(() => {
+    // if (location.pathname === '/') {
+    //   dispatch(getMyFollowingsPost());
+    // }
+
+    if (location.pathname === '/') {
+      localStorage.setItem('location', 'home');
+    } else if (location.pathname === '/message') {
+      localStorage.setItem('location', 'message');
+    } else if (location.pathname === '/explore') {
+      localStorage.setItem('location', 'explore');
+    } else if (location.pathname === '/profile') {
+      localStorage.setItem('location', 'profile');
+    }
+  }, [location.pathname]);
+
   return (
     <div className="App">
       <Router>

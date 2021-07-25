@@ -63,6 +63,7 @@ export const FollowerSection = styled.div`
 `
 export const AnchorTag = styled.a`
     margin-right:2vw;
+    cursor:pointer;
 `
 
 export const BioSection = styled.div`
