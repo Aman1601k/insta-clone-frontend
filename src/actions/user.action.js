@@ -138,3 +138,42 @@ export const userChats = (receiverId) => {
         }
     }
 }
+
+export const getFollowers = (id) => {
+    return async (dispatch) => {
+      const res = await axiosInstance.get(`/getfollowers/${id}`);
+      const user = res.data.user;
+      let followers = user.map((e) => e.followers);
+      var merged = [].concat.apply([], followers);
+      if (res.status === 200) {
+        dispatch({
+          type: userConstants.GET_FOLLOWERS_DETAILS,
+          payload: {
+            followers: merged,
+          },
+        });
+      }
+    };
+  };
+  
+  export const getFollowings = (id) => {
+    return async (dispatch) => {
+      const res = await axiosInstance.get(`/getfollowings/${id}`);
+  
+      if (res.status === 200) {
+        const user = res.data.user;
+
+      let followings = user.map((e) => e.following);
+
+      var merged = [].concat.apply([], followings);
+
+      console.log('Followings merged', merged);
+
+      dispatch({
+        type: userConstants.GET_FOLLOWINGS_DETAILS,
+        payload: { followings: merged },
+      });
+      }
+    };
+  };
+  

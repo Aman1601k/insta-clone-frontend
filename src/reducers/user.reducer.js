@@ -5,6 +5,8 @@ const initState = {
     message:'',
     userPost:[],
     suggestedUser:[],
+    followers: [],
+    followings: [],
     userChats:[],
     loading:false,
     following:false,
@@ -120,6 +122,18 @@ export default (state = initState , action) => {
                     error: action.payload.error
                 }
                 break;
+            case userConstants.GET_FOLLOWERS_DETAILS:
+                state = {
+                    ...state,
+                    followers: action.payload.followers,
+                };
+                break;
+            case userConstants.GET_FOLLOWINGS_DETAILS:
+            state = {
+                ...state,
+                followings: action.payload.followings,
+            };
+            break;
         }
     return state;
 }

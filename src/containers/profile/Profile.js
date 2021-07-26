@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CustomModal from "../home/PostModal";
 import PostsContainer from './PostsContainer/PostsContainer'
 import {useDispatch, useSelector} from 'react-redux'
-import { mypost, updateBio, updateProfilePicture } from '../../actions';
+import { getFollowers, getFollowings, mypost, updateBio, updateProfilePicture } from '../../actions';
 import ModalContainer from '../ModalSmall/ModalContainer';
 import ChatModal from '../ModalSmall/ChatModal';
 
@@ -79,6 +79,11 @@ const Profile = () => {
         setFollowingModal(false);
     };
 
+    useEffect(() => {
+        dispatch(getFollowers(auth.user._id));
+        dispatch(getFollowings(auth.user._id));
+    }, []);
+
     return (
         <>
         <Header>
@@ -130,15 +135,15 @@ const Profile = () => {
                 </div>  
             </Container>
         </CustomModal>
-        {auth?.user?.followers?.length > 0 && (
+        {user?.followers?.length > 0 && (
             <ModalContainer open={followerModal} handleClose={closeFollower}>
-                <ChatModal details={auth.user.followers} follower={true} />
+                <ChatModal details={user.followers} follower={true} />
             </ModalContainer>
         )}
 
-        {auth?.user?.following?.length > 0 && (
+        {user?.followings?.length > 0 && (
             <ModalContainer open={followingModal} handleClose={closeFollowing}>
-                <ChatModal details={auth.user.following} following={true} />
+                <ChatModal details={user.followings} following={true} />
             </ModalContainer>
         )}
         </>

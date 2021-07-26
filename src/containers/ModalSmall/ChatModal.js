@@ -10,7 +10,7 @@ import {
   FullName,
   StyledBtn,
 } from './style';
-import  {newConversation, unfollowUser}  from '../../actions';
+import  {getFollowings, newConversation, unfollowUser}  from '../../actions';
 
 const ModalSmall = ({details ,data,onClick,onBtnClick ,follower,following}) => {
   const auth = useSelector((state) => state.auth);
@@ -39,7 +39,7 @@ const ModalSmall = ({details ,data,onClick,onBtnClick ,follower,following}) => {
 
   const UNfollow = (id) => {
     console.log(id);
-    dispatch(unfollowUser(id));
+    dispatch(unfollowUser(id)).then(() => dispatch(getFollowings(auth.user._id)));
   };
 
   return (
@@ -79,7 +79,7 @@ const ModalSmall = ({details ,data,onClick,onBtnClick ,follower,following}) => {
                   <div className="main" onClick={onClick}>
                     <Avatar src={user.profilePicture} />
                     <span>
-                      <h3>aman</h3>
+                      <h3>{user.name}</h3>
                       {/* <FullName>{user.name}</FullName> */}
                     </span>
                   </div>
