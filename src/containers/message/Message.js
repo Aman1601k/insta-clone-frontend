@@ -22,6 +22,7 @@ import {
   suggestedUsers
 } from "../../actions";
 import { io } from "socket.io-client";
+import moment from 'moment';
 import styled from 'styled-components/macro';
 import EmojiSvg from '../../components/svg/EmojiSvg'
 import useStayScrolled from 'react-stay-scrolled';
@@ -233,10 +234,20 @@ const Message = () => {
                         {item.sender === auth.user._id ? (
                           <MessageDiv own>
                             <p>{item.text}</p>
+                            <span>
+                              {moment(item.text.createdAt)
+                                .startOf('seconds')
+                                .fromNow()}
+                            </span>
                           </MessageDiv>
                         ) : (
                           <MessageDiv>
                             <p>{item.text}</p>
+                            <span>
+                              {moment(item.text.createdAt)
+                                .startOf('seconds')
+                                .fromNow()}
+                            </span>
                           </MessageDiv>
                         )}
                       </>
@@ -335,7 +346,9 @@ export const MessageContainer = styled.div`
 export const MessageDiv = styled.div`
     width: 100%;
     display: flex;
-    justify-content:${props => props.own ? "flex-end" : "flex-start"};
+    flex-direction:column;
+    /* justify-content:${props => props.own ? "flex-end" : "flex-start"}; */
+    align-items:${props => props.own ? "flex-end" : "flex-start"};
     /* border: 1px solid lightgrey; */
     /* margin-left:${props => props.own ? "10px" : "0px"} */
     p{
@@ -345,6 +358,14 @@ export const MessageDiv = styled.div`
         border-radius:30px;
         padding: 20px;
         background-color:${props => props.own ? "#efefef" : "white"};
+    }
+    span {
+    color: #8e8e8e;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    margin-top: -1px;
+    font-size: 9px;
     }
 `;
 
