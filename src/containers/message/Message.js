@@ -10,7 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Avatar } from "@material-ui/core";
-import { Popover } from '../../components/PopOver/Popover';
+import SimplePopover from '../../components/PopOver/Popover';
 // import NoMessageField from "./NoMessageField";
 // import PersonalMessageField from "./PersonalMessageField";
 import {
@@ -19,7 +19,8 @@ import {
   getSpecificChats,
   userChats,
   sendMessage,
-  suggestedUsers
+  suggestedUsers,
+  deleteConversation
 } from "../../actions";
 import { io } from "socket.io-client";
 import moment from 'moment';
@@ -30,6 +31,8 @@ import ShareSvg from '../../components/svg/ShareSvg';
 import { Button } from '@material-ui/core';
 import ModalSmall from '../ModalSmall/ChatModal'
 import ModalContainer from '../ModalSmall/ModalContainer'
+import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const Message = () => {
   const auth = useSelector((state) => state.auth);
@@ -43,6 +46,7 @@ const Message = () => {
   const socket = useRef(io("ws://localhost:5500"));
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpen = () => {
     setOpen(true);
@@ -104,8 +108,6 @@ const Message = () => {
 
   useEffect(() => {
     arrivalMessage && dispatch(getSpecificChats(convo.conversationId));
-    // console.log(arrivalMessage);
-    console.log("fffffffffffffffffff",arrivalMessage)
   },[arrivalMessage])
 
   useEffect(() => {
@@ -136,7 +138,22 @@ const Message = () => {
 
   const newConversation = () => {
     const ids = user.suggestedUser.map((id) => id._id);
-    console.log(ids);
+  };
+
+  const openPopOver = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const closePopOver = () => {
+    setAnchorEl(null);
+  };
+
+  const conversationDelete = () => {
+    dispatch(
+      deleteConversation(convo.conversationId, auth.user._id)
+    ).then(() => {
+      window.location.reload();
+    });
   };
 
   return (
@@ -150,6 +167,14 @@ const Message = () => {
           </div>
         </Header>
         <Inbox>
+          <SimplePopover anchorEl={anchorEl} handleClose={closePopOver}>
+              <DeleteLayout onClick={() => conversationDelete()}>
+                <p>Delete</p>
+                <span>
+                  <DeleteOutlineOutlinedIcon />
+                </span>
+              </DeleteLayout>
+            </SimplePopover>
           {React.Children.toArray(
             user.userChats?.map((item) => {
               return (
@@ -177,7 +202,10 @@ const Message = () => {
                       Sent you a message
                     </p>
                   </div>
-                  <span></span>
+                  {/* <span></span> */}
+                  <DeleteButton onClick={(event) => openPopOver(event, user)}>
+                    <MoreVertIcon />
+                  </DeleteButton>
                 </PersonChatBox>
               );
             })
@@ -415,9 +443,8 @@ const ButtonStyle = styled(Button)`
     /* margin-top:15px !important; */
     color: white !important;
     background-color: ${props => props.primary ? "#0095f6 !important"  : "lightblue !important" };
+
 `
-
-
 const ShareIconDiv = styled.div`
    width: 100%;
   height:96px;
@@ -433,5 +460,51 @@ const ShareIconDiv = styled.div`
     align-items: center;
     border: 2px solid black;
     border-radius:55px;
+  }
+  `;
+
+  const DeleteButton = styled.button`
+    background: transparent;
+    border: none;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    right: 0;
+    cursor: pointer;
+    & .MuiSvgIcon-root {
+      font-size: 22px;
+    }
+  `;
+
+const DeleteLayout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius:5px;
+  &:hover {
+    p {
+      color: #ff0317;
+    }
+    span {
+      & .MuiSvgIcon-root {
+        fill: #ff0317;
+      }
+    }
+  }
+  p {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  span {
+    & .MuiSvgIcon-root {
+      margin-top: 3px;
+      font-size: 16px;
+      fill: #000000;
+    }
   }
 `;
