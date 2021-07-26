@@ -95,6 +95,12 @@ export default (state = initState, action) => {
           error: action.payload.error,
         }
         break;
+      case messageConstants.DELETE_CONVERSATION:
+        state = {
+          ...state,
+          conversation: state.conversation.filter((chat) => chat._id !== action.payload.id),
+        };
+        break;
   }
   return state;
 };

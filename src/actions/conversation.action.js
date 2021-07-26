@@ -122,3 +122,17 @@ export const getConversation = (userId) => {
         }
       };
     };
+
+    export const deleteConversation = (id, userid) => {
+      return async (dispatch) => {
+        const res = await axiosInstance.delete(`/conversation/${id}`);
+    
+        if (res.status === 200) {
+          console.log(res.data);
+          dispatch({
+            type: messageConstants.DELETE_CONVERSATION,
+            payload: { id: res.data.conversation },
+          });
+        }
+      };
+    };
