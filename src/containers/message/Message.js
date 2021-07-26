@@ -185,7 +185,6 @@ const Message = () => {
       </LeftContainer>
       <RightContainer>
         {!changeConvo ? (
-          // <NoMessageField />
           <NoMsgContainer>
             <ShareIconDiv>
                 <div>
@@ -201,7 +200,6 @@ const Message = () => {
                     </div>
           </NoMsgContainer>
         ) : 
-          // <PersonalMessageField/>
           <>
             <Top>
               <div>
