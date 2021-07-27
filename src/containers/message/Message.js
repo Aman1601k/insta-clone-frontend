@@ -83,6 +83,10 @@ const Message = () => {
       dispatch(suggestedUsers())
     },[])
 
+    // useEffect(() => {
+    //   scrollRef?.current?.scrollIntoView({ scrollBehavior: 'smooth'})
+    // },[convo.specificChat.length])
+
     useEffect(() => {
         dispatch(getSpecificChats(convo.conversationId))
     },[convo.specificChat.length])
@@ -263,7 +267,7 @@ const Message = () => {
                           <MessageDiv own>
                             <p>{item.text}</p>
                             <span>
-                              {moment(item.text.createdAt)
+                              {moment(item.createdAt)
                                 .startOf('seconds')
                                 .fromNow()}
                             </span>
@@ -272,7 +276,7 @@ const Message = () => {
                           <MessageDiv>
                             <p>{item.text}</p>
                             <span>
-                              {moment(item.text.createdAt)
+                              {moment(item.createdAt)
                                 .startOf('seconds')
                                 .fromNow()}
                             </span>

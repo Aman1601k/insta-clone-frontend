@@ -42,6 +42,11 @@ export const NameSection = styled.div`
     display:flex;
     height: 3rem;
     margin-top: 2%;
+    position: relative;
+    span{
+      position: absolute;
+      right: 30px;
+    }
     /* background-color:brown; */
 `
 export const Button = styled.button`
@@ -73,3 +78,32 @@ export const BioSection = styled.div`
     /* background-color:brown; */
 `
 
+export const Content = styled.div`
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+  &:hover {
+    background-color: #ecf3f9;
+    div {
+      p {
+        color: black;
+      }
+    }
+  }
+  div {
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 14px;
+      font-weight: 600;
+      margin-left: 10px;
+      color: #8e8e8e;
+      transition: color 0.2s linear;
+    }
+  }
+`;
+
+export const PopoverContainer = styled.div`
+  height: max-content;
+  width: 250px;
+`;

@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components/macro';
-import {Header ,ImageSection , DetailsSection , AvatarSection , NameSection ,Button, FollowerSection , BioSection ,Body ,AnchorTag} from './style'
+import {Header ,ImageSection , DetailsSection , AvatarSection , NameSection ,Button, FollowerSection , BioSection ,Body ,AnchorTag , Content , PopoverContainer} from './style'
 import Avatar from '@material-ui/core/Avatar';
 import CustomModal from "../home/PostModal";
 import PostsContainer from './PostsContainer/PostsContainer'
@@ -8,8 +8,16 @@ import {useDispatch, useSelector} from 'react-redux'
 import { getFollowers, getFollowings, mypost, updateBio, updateProfilePicture } from '../../actions';
 import ModalContainer from '../ModalSmall/ModalContainer';
 import ChatModal from '../ModalSmall/ChatModal';
+import SimplePopover from '../../components/PopOver/Popover';
+import IGTV from '../../components/svg/IGTV';
+import Posts from '../../components/svg/Posts';
+import Save from '../../components/svg/Save';
+import Tagged  from '../../components/svg/Tagged';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
+    const history = useHistory();
     const [picture, setPicture] = useState('')
     const [bio, setBio] = useState('')
     const [imageurl, setImageUrl] = useState('')
@@ -20,6 +28,7 @@ const Profile = () => {
     const [open, setOpen] = useState(false);
     const [followerModal, setFollowerModal] = useState(false);
     const [followingModal, setFollowingModal] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const profileUpdate = () => {
         const data = new FormData()
@@ -84,6 +93,14 @@ const Profile = () => {
         dispatch(getFollowings(auth.user._id));
     }, []);
 
+    const openPopOver = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    
+    const closePopOver = () => {
+       setAnchorEl(null);
+    };
+
     return (
         <>
         <Header>
@@ -96,6 +113,48 @@ const Profile = () => {
                 <NameSection>
                     <p style={{fontSize:'28px' ,marginTop: '1px'}}>{auth.user.name}</p>
                     <Button onClick={handleOpen}>Edit profile</Button>
+                    <span>
+                        <span onClick={openPopOver}>
+                        <MoreVertIcon />
+                        </span>
+                        <SimplePopover
+                        transformVO="top"
+                        anchorVO="top"
+                        anchorEl={anchorEl}
+                        handleClose={closePopOver}
+                        >
+                        <PopoverContainer>
+                            <Content>
+                            <div>
+                                <Posts height="24px" width="24px" />
+                                <p>Posts </p>
+                            </div>
+                            </Content>
+                            <Content>
+                            <div
+                                onClick={() => {
+                                // history.push('/savedpost');
+                                }}
+                            >
+                                <Save fill="#8e8e8e" />
+                                <p>Saved Posts</p>
+                            </div>
+                            </Content>
+                            <Content>
+                            <div>
+                                <IGTV height="26px" width="26px" />
+                                <p>IGTV </p>
+                            </div>
+                            </Content>
+                            <Content>
+                            <div>
+                                <Tagged height="26px" width="26px" />
+                                <p>Tagged</p>
+                            </div>
+                            </Content>
+                        </PopoverContainer>
+                        </SimplePopover>
+                    </span>
                 </NameSection>
                 <FollowerSection>
                     <AnchorTag><span><strong>{post.mypost.length}</strong></span>  posts</AnchorTag>
