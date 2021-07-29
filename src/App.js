@@ -4,6 +4,7 @@ import Message from "./containers/message/Message";
 import Explore from "./containers/explore/Explore";
 import Favourite from "./containers/favourite/Favourite";
 import Profile from './containers/profile/Profile';
+import SavedPost from './containers/profile/SavedPost/SavedPosts'
 import {  BrowserRouter as Router , Switch, Route, useHistory } from "react-router-dom";
 import AuthComponents from "./components/AuthComponents/AuthComponents";
 import SignUpPage from "./containers/Signup/SignUpPage";
@@ -62,9 +63,9 @@ function App() {
           <Route exact path="/reset" component={Reset}/>
           <Route path="/reset/:token" component={NewPassPage}/>
           <Layout>
-            
             <PrivateRoute exact path="/" component={Home}/>
             <PrivateRoute path="/message" component={Message}/>
+            <PrivateRoute exact path="/savedpost" component={SavedPost} />
             <PrivateRoute path="/explore" component={Explore }/>
             <PrivateRoute path="/favourite" component={Favourite}/>
             <PrivateRoute exact path="/profile" component={Profile}/>

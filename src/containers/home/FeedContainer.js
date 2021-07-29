@@ -9,8 +9,9 @@ import CommentSvg from '../../components/svg/CommentSvg'
 import ShareSvg from '../../components/svg/ShareSvg'
 import SaveSvg from '../../components/svg/SaveSvg'
 import EmojiSvg from '../../components/svg/EmojiSvg'
+import SavedSvg from '../../components/svg/SavedSvg'
 import { useDispatch, useSelector } from "react-redux";
-import {likepost , unlikepost , comment , deletepost , deletecomment} from '../../actions';
+import {likepost , unlikepost , comment , deletepost , deletecomment, unsavePost, savePost} from '../../actions';
 import {Loader} from '../Login/style'
 import {Link} from 'react-router-dom'
 import useStayScrolled from 'react-stay-scrolled';
@@ -46,6 +47,8 @@ const FeedsContainer = (props) => {
     const DeleteComment = (id,commentId) => {
         dispatch(deletecomment(id ,commentId))
     }
+
+    const savedPosts = localStorage.getItem('ids');
 
     return (
         <>
@@ -85,7 +88,24 @@ const FeedsContainer = (props) => {
                                <Button><CommentSvg/></Button>
                                <Button><ShareSvg/></Button> 
                             </div>
-                            <Button><SaveSvg style={{marginRight: '10px'}}/></Button>
+                                {savedPosts?.includes(props._id) ? (
+                                    <Button
+                                      onClick={() => {
+                                        console.log('item', props._id);
+                                        dispatch(unsavePost(props._id));
+                                      }}
+                                      >
+                                      <SavedSvg style={{marginRight: '10px'}}/>
+                                    </Button>
+                                  ) : (
+                                    <Button
+                                      onClick={() => {
+                                        dispatch(savePost(props._id));
+                                      }}
+                                    >
+                                      <SaveSvg style={{marginRight: '10px'}}/>
+                                    </Button>
+                                  )}
                         </LikeDiv>
                         <p style={{padding: '5px' , margin:'-1px 12px'}}>{props.likesLength} likes</p>
                         <div style={{display: 'flex' , alignItems: 'center' , margin:'-25px 0 -20px 15px' }}>

@@ -6,7 +6,9 @@ const initState = {
     name:"",
     email: "",
     profilePicture: "",
+    savedPosts:[]
   },
+  savedPostDetails: [],
   authenticate: false,
   authenticating: false,
   loading: false,
@@ -107,6 +109,36 @@ export default (state = initState, action) => {
       }
       break;
     }
+    case authConstants.GET_SAVED_POSTS:
+      state = {
+        ...state,
+        savedPostDetails: action.payload.posts,
+      };
+      break;
+    case authConstants.SAVE_POST_REQUEST:
+      state = {
+        ...state,
+        // saving: true,
+      };
+      break;
+    case authConstants.SAVE_POST_SUCCESS:
+      state = {
+        ...state,
+        // saving: false,
+      };
+      break;
+    case authConstants.UNSAVE_POST_REQUEST:
+      state = {
+        ...state,
+        // saving: true,
+      };
+      break;
+    case authConstants.UNSAVE_POST_SUCCESS:
+      state = {
+        ...state,
+        // saving: false,
+      };
+      break;
   }
   return state;
 };

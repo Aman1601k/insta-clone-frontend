@@ -133,7 +133,7 @@ const Profile = () => {
                             <Content>
                             <div
                                 onClick={() => {
-                                // history.push('/savedpost');
+                                history.push('/savedpost');
                                 }}
                             >
                                 <Save fill="#8e8e8e" />
