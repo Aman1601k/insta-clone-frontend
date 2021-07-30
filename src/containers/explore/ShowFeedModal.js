@@ -57,31 +57,34 @@ const ShowFeedModal = (props) => {
                   </CommentSection>
                 </Body>
                 <Footer>
-                  <div style={{display: 'flex', width:'90px' ,justifyContent: 'space-evenly',marginLeft:'5px', padding: '5px 0px 0px 5px' }}>
-                    {
+                  <div style={{display: 'flex', width:'100%' ,justifyContent: 'space-between',marginLeft:'5px', padding: '5px 0px 0px 5px' }}>
+                    <div style={{display: 'flex' , width: '90px' , justifyContent: 'space-evenly'}}>
+                      {
                       props.item?.likes?.length === 0 ?
-                      <LikeSvg/> :
-                      <UnLikeSvg/> 
-                    }
-                    <CommentSvg/>
-                    <ShareSvg/> 
+                        <LikeSvg/> :
+                        <UnLikeSvg/> 
+                      }
+                      <CommentSvg/>
+                      <ShareSvg/> 
+                    </div>
                     <div>
-                    {savedPosts?.includes(props._id) ? (
+                    {savedPosts?.includes(props.item._id) ? (
                         <Button
                           onClick={() => {
-                            console.log('item', props._id);
-                            dispatch(unsavePost(props._id));
+                            console.log('item', props.item._id);
+                            dispatch(unsavePost(props.item._id));
                           }}
                           >
-                          <SavedSvg style={{marginRight: '10px'}}/>
+                          <SavedSvg />
                         </Button>
                       ) : (
                         <Button
                           onClick={() => {
-                            dispatch(savePost(props._id));
+                            dispatch(savePost(props.item._id));
+                            window.location.reload();
                           }}
                         >
-                          <SaveSvg style={{marginRight: '10px'}}/>
+                          <SaveSvg />
                         </Button>
                       )}
                     </div>
