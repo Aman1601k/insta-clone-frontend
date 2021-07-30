@@ -5,13 +5,19 @@ import UnLikeSvg from '../../components/svg/UnLikeSvg'
 import CommentSvg from '../../components/svg/CommentSvg'
 import ShareSvg from '../../components/svg/ShareSvg'
 import styled from 'styled-components/macro';
+import SaveSvg from '../../components/svg/SaveSvg';
+import SavedSvg from '../../components/svg/SavedSvg'
 import { Avatar, Button } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {Link} from 'react-router-dom'
 import EmojiSvg from '../../components/svg/EmojiSvg'
+import { savePost, unsavePost } from "../../actions";
 
 const ShowFeedModal = (props) => {
   const auth = useSelector(state => state.auth)
+  const savedPosts = localStorage.getItem('ids');
+  const dispatch = useDispatch();
+
   return (
     <>
       <FeedModal open={props.open} handleClose={props.handleClose}>
@@ -59,6 +65,26 @@ const ShowFeedModal = (props) => {
                     }
                     <CommentSvg/>
                     <ShareSvg/> 
+                    <div>
+                    {savedPosts?.includes(props._id) ? (
+                        <Button
+                          onClick={() => {
+                            console.log('item', props._id);
+                            dispatch(unsavePost(props._id));
+                          }}
+                          >
+                          <SavedSvg style={{marginRight: '10px'}}/>
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            dispatch(savePost(props._id));
+                          }}
+                        >
+                          <SaveSvg style={{marginRight: '10px'}}/>
+                        </Button>
+                      )}
+                    </div>
                   </div>
                     <p>{props.item.likes?.length} likes</p>
                       <div>

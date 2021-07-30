@@ -14,7 +14,7 @@ import PrivateRoute from "./components/HOC/PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import {useLocation} from 'react-router-dom'
 import { useEffect } from "react";
-import { isUserLoggedIn } from "./actions";
+import { getSavedPosts, isUserLoggedIn } from "./actions";
 import UserProfile from "./containers/profile/UserProfile";
 import Reset from "./containers/ResetPassword/Reset";
 import NewPassPage from "./containers/ResetPassword/NewPassPage";
@@ -24,19 +24,20 @@ function App() {
   const history = useHistory()
   const dispatch = useDispatch();
   const auth = useSelector(state => state.auth)
+  let ids = JSON.parse(localStorage.getItem('ids'));
 
   useEffect(() => {
-    if(!auth.authenticate){
+    if(!auth?.authenticate){
       dispatch(isUserLoggedIn())
     }
-    if(auth.authenticate){
+    if(auth?.authenticate){
       if(location.pathname.startsWith('/reset')){
         history.push('/');
         window.location.reload();
       }
     }
     
-  }, [auth.authenticate])
+  }, [auth?.authenticate])
 
   useEffect(() => {
     // if (location.pathname === '/') {
@@ -52,7 +53,12 @@ function App() {
     } else if (location.pathname === '/profile') {
       localStorage.setItem('location', 'profile');
     }
-  }, [location.pathname]);
+    if (location.pathname === '/savedpost') {
+      ids = JSON.parse(localStorage.getItem('ids'));
+      console.log(ids);
+      dispatch(getSavedPosts(ids));
+    }
+  }, [location.pathname , ids?.length ]);
 
   return (
     <div className="App">

@@ -33,7 +33,7 @@ export const FeedContainer = styled.div`
     /* border: 1px dotted black; */
 
     &:hover{
-        filter:brightness(92%);
+        filter:brightness(72%);
         ${Hover}{
             display: flex;
         }

@@ -30,7 +30,7 @@ const LoginPage = () => {
         };
         dispatch(login(user));
     }
-    if (auth.authenticate) {
+    if (auth?.authenticate) {
       return <Redirect to={`/`} />;
     }
 
@@ -44,8 +44,8 @@ const LoginPage = () => {
           />
           <LoginForm>
             <form>
-              {!auth.authenticating && (auth.error ? <Error><p>{auth.error}</p></Error> : error && <Error><p>{error}</p></Error> )}
-              {auth.authenticating && <Loader><p/></Loader>}
+              {!auth?.authenticating && (auth?.error ? <Error><p>{auth?.error}</p></Error> : error && <Error><p>{error}</p></Error> )}
+              {auth?.authenticating && <Loader><p/></Loader>}
               <TextFieldStyle
                 id="outlined-basic"
                 label=" Username or Email"
@@ -61,7 +61,7 @@ const LoginPage = () => {
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {!auth.authenticating ?
+              {!auth?.authenticating ?
               <ButtonStyle variant="contained" color="primary" onClick={() => PostData()} primary>
                 Log In
               </ButtonStyle> :

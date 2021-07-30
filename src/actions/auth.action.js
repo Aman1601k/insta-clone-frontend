@@ -15,34 +15,36 @@ export const login = (user) => {
         })
 
         if(res.status == 200){
-            const {token , user} = res.data;
-            localStorage.setItem('token', token );
+          window.location.reload()
+          const {token , user} = res.data;
+          localStorage.setItem('token', token );
             localStorage.setItem('user', JSON.stringify(user));
             dispatch({ 
                 type: authConstants.LOGIN_SUCCESS,
                 payload:{
                     token , user
-                }
+                  }
             });
-        }else{
+          }else{
             if(res.status == 206){
                 dispatch({ 
-                    type: authConstants.LOGIN_FAILURE,
+                  type: authConstants.LOGIN_FAILURE,
                     payload:{ error: res.data.error }
                 });
-            }
+              }
         }
-    }
+      }
 }
 
 export const signout = () => {
     return async dispatch => {
-
+      
         dispatch({type: authConstants.LOGOUT_REQUEST})
         const res = await axiosInstance.post(`/signout`)
-
+        
         if(res.status === 200) {
-            localStorage.clear();
+          localStorage.clear();
+          window.location.reload();
         dispatch({ type: authConstants.LOGOUT_SUCCESS})
         }else{
             dispatch({

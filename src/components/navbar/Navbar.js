@@ -110,7 +110,7 @@ function Navbar() {
                   <Avatar
                         style={{ width: "20px", height: "20px" }}
                         onClick={() => localStorage.setItem("location" , "profile")}
-                        src={auth.user.profilePicture}
+                        src={auth?.user?.profilePicture}
                     />
               </Button>
             </Link>

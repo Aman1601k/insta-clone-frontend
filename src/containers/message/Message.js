@@ -13,6 +13,7 @@ import { Avatar } from "@material-ui/core";
 import SimplePopover from '../../components/PopOver/Popover';
 // import NoMessageField from "./NoMessageField";
 // import PersonalMessageField from "./PersonalMessageField";
+import ReactScrollableFeed from 'react-scrollable-feed';
 import {
   getConversation,
   getConversationId,
@@ -39,10 +40,8 @@ const Message = () => {
   const user = useSelector((state) => state.user);
   const convo = useSelector((state) => state.convo);
   const [changeConvo, setChangeConvo] = useState(false);
-  const [newMessage, setNewMessage] = useState('')
   const [arrivalMessage, setArrivalMessage] = useState(null)
-  // const scrollRef = useRef()
-  // const { scrollBottom } = useStayScrolled(scrollRef);
+  const scrollRef = useRef()
   const socket = useRef(io("ws://localhost:5500"));
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -56,16 +55,17 @@ const Message = () => {
     setOpen(false);
   };
 
-  const MessageText = async (e , msgtext) => {
-      e.target.reset();
-      
-      const message = {
+  const MessageText = (e , msgtext) => {
+    console.log("eeeeeeeeeeeeee",e)  
+    const message = {
           sender: auth.user._id,
           receiver: convo.userDetails[0]._id,
           text: msgtext,
           conversationId: convo.conversationId
       }
-      dispatch(sendMessage(message))
+      dispatch(sendMessage(message)).then(() => {
+        e.target.reset();
+      });
       
       socket.current.emit("sendMessage" ,{
         senderId: auth.user._id,
@@ -74,18 +74,13 @@ const Message = () => {
       })
     }
 
-    // useLayoutEffect(() => {
-    //     // scrollBottom();
-    //     console.log(scrollRef)
-    // }, [convo.specificChat.length])
-
     useEffect(() => {
       dispatch(suggestedUsers())
     },[])
 
-    // useEffect(() => {
-    //   scrollRef?.current?.scrollIntoView({ scrollBehavior: 'smooth'})
-    // },[convo.specificChat.length])
+    useEffect(() => {
+      scrollRef?.current?.scrollIntoView({ scrollBehavior: 'smooth'})
+    },[convo.specificChat])
 
     useEffect(() => {
         dispatch(getSpecificChats(convo.conversationId))
@@ -206,7 +201,6 @@ const Message = () => {
                       Sent you a message
                     </p>
                   </div>
-                  {/* <span></span> */}
                   <DeleteButton onClick={(event) => openPopOver(event, user)}>
                     <MoreVertIcon />
                   </DeleteButton>
@@ -256,15 +250,16 @@ const Message = () => {
                 )}
               </div>
             </Top>
-            {/* <MessageContainer ref={scrollRef}> */}
             <MessageContainer>
+            {/* <MessageContainer> */}
               <div>
                 {React.Children.toArray(
                   convo?.specificChat?.map((item) => {
                     return (
                       <>
                         {item.sender === auth.user._id ? (
-                          <MessageDiv own>
+                          <div ref={scrollRef}>
+                            <MessageDiv own>
                             <p>{item.text}</p>
                             <span>
                               {moment(item.createdAt)
@@ -272,8 +267,10 @@ const Message = () => {
                                 .fromNow()}
                             </span>
                           </MessageDiv>
+                          </div>
                         ) : (
-                          <MessageDiv>
+                          <div ref={scrollRef}>
+                            <MessageDiv>
                             <p>{item.text}</p>
                             <span>
                               {moment(item.createdAt)
@@ -281,6 +278,8 @@ const Message = () => {
                                 .fromNow()}
                             </span>
                           </MessageDiv>
+                          </div>
+                          
                         )}
                       </>
                     );
@@ -293,14 +292,12 @@ const Message = () => {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  MessageText(e, e.target[0].value);
+                  MessageText(e,e.target[0].value);
                 }}
               >
                 <input
                   type="text"
                   placeholder="Message..."
-                  onChange={(e) => setNewMessage(e.target.value)}
-                  value={newMessage}
                 />
               </form>
               <svg
@@ -369,6 +366,7 @@ export const MessageContainer = styled.div`
     top: 52px;
     height: calc(100% - 116px);
     overflow-y: scroll;
+    overflow-x: hidden;
     /* border: 1px solid black; */
     div{
         width: 100%;
