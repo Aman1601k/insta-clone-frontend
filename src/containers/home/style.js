@@ -158,3 +158,11 @@ export const Suggestion = styled.div`
     }
 `
 
+export const ViewComments = styled.p`
+  color: #8e8e8e;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 15px;
+  margin-top: -10px;
+`;

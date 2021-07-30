@@ -1,6 +1,6 @@
-import React, { useRef ,useLayoutEffect } from 'react'
+import React, { useRef ,useLayoutEffect, useState } from 'react'
 import styled, { css } from 'styled-components/macro';
-import {FeedContainer , NameSection , ImageSection , DetailsSection , CommentDiv , LikeDiv ,ShowComment} from './style'
+import {FeedContainer , NameSection , ImageSection , DetailsSection ,ViewComments, CommentDiv , LikeDiv ,ShowComment} from './style'
 import Avatar from '@material-ui/core/Avatar';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import LikeSvg from '../../components/svg/LikeSvg'
@@ -15,12 +15,14 @@ import {likepost , unlikepost , comment , deletepost , deletecomment, unsavePost
 import {Loader} from '../Login/style'
 import {Link} from 'react-router-dom'
 import useStayScrolled from 'react-stay-scrolled';
+import ShowFeedModal from '../explore/ShowFeedModal';
 
 const FeedsContainer = (props) => {
     const dispatch = useDispatch();
     const post = useSelector(state => state.post)
     const auth = useSelector(state => state.auth)
-    const scrollRef = useRef()
+    const scrollRef = useRef();
+    const [open, setOpen] = useState(false);
     const { scrollBottom } = useStayScrolled(scrollRef);
 
     const Likepost = (id) => {
@@ -47,6 +49,14 @@ const FeedsContainer = (props) => {
     const DeleteComment = (id,commentId) => {
         dispatch(deletecomment(id ,commentId))
     }
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const savedPosts = localStorage.getItem('ids');
 
@@ -112,7 +122,13 @@ const FeedsContainer = (props) => {
                             <h5 style={{fontSize:'17px'}}>{props.name}</h5>
                             <p style={{fontSize:'17px' , marginLeft:'5px'}}>{props.caption}</p>
                         </div>
-                            <p style={{fontSize:'12px' , color:'grey' , marginLeft: '15px' , marginTop: '-10px'}}>View all {props.commentsLength} comments</p>
+                            <ViewComments
+                                 onClick={() => {
+                                    handleOpen();
+                                  }}
+                            >
+                                View all {props.commentsLength} comments
+                            </ViewComments>
                         <ShowComment ref={scrollRef}>
                            {React.Children.toArray(
                                props.comments.map(comment => {
@@ -154,6 +170,7 @@ const FeedsContainer = (props) => {
                     </DetailsSection>
         </FeedContainer>
         <br/>
+        <ShowFeedModal open={open}  handleClose={handleClose} item={props.item}></ShowFeedModal>
         </>
     )
 }

@@ -57,6 +57,7 @@ const Home = () => {
                     post.posts?.map((item) => {
                         return(
                             <FeedsContainer 
+                                item={item}
                                 _id = {item._id}
                                 postedBy_id = {item.postedBy._id}
                                 likesLength={item.likes.length}

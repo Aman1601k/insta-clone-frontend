@@ -90,13 +90,13 @@ const ShowFeedModal = (props) => {
                     </div>
                   </div>
                     <p>{props.item.likes?.length} likes</p>
-                      <div>
+                      {/* <div>
                           <Button><EmojiSvg/></Button>
                           <form >
                               <input type="text" placeholder="Add a comment..." />
                           </form>
                           <a><p style={{color:'#25a4f6', marginRight: '7px'}}>Post</p></a>
-                      </div>
+                      </div> */}
                 </Footer>
             </DetailsSection>
           </Container>
@@ -151,7 +151,7 @@ const Header = styled.div`
 const Body = styled.div`
   height: max-content;
   overflow-y: scroll;
-  min-height:413px;
+  min-height:450px;
   /* display: flex; */
   /* align-items: center; */
   /* background-color:red; */
