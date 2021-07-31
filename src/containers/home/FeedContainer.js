@@ -11,11 +11,14 @@ import SaveSvg from '../../components/svg/SaveSvg'
 import EmojiSvg from '../../components/svg/EmojiSvg'
 import SavedSvg from '../../components/svg/SavedSvg'
 import { useDispatch, useSelector } from "react-redux";
-import {likepost , unlikepost , comment , deletepost , deletecomment, unsavePost, savePost} from '../../actions';
+import {likepost , unlikepost , comment , deletepost , deletecomment, unsavePost, savePost, setPostDetails} from '../../actions';
 import {Loader} from '../Login/style'
 import {Link} from 'react-router-dom'
 import useStayScrolled from 'react-stay-scrolled';
 import ShowFeedModal from '../explore/ShowFeedModal';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import DeleteModal from './DeleteModal';
+import ModalContainer from '../ModalSmall/ModalContainer';
 
 const FeedsContainer = (props) => {
     const dispatch = useDispatch();
@@ -23,7 +26,9 @@ const FeedsContainer = (props) => {
     const auth = useSelector(state => state.auth)
     const scrollRef = useRef();
     const [open, setOpen] = useState(false);
+    const [openDelete, setOpenDelete] = useState(false);
     const { scrollBottom } = useStayScrolled(scrollRef);
+    const [item, setItem] = useState({});
 
     const Likepost = (id) => {
         dispatch(likepost(id))
@@ -58,10 +63,21 @@ const FeedsContainer = (props) => {
         setOpen(false);
     };
 
+    const openDeleteModal = () => {
+        setOpenDelete(true);
+    };
+
+    const closeDeleteModal = () => {
+    setOpenDelete(false);
+    };
+    
     const savedPosts = localStorage.getItem('ids');
 
     return (
         <>
+        <ModalContainer open={openDelete} handleClose={closeDeleteModal}>
+            <DeleteModal close={setOpenDelete} data={item} />
+        </ModalContainer>
         <FeedContainer  style={{backgroundColor: '#fff'}}>
                     <NameSection>
                         <div>
@@ -69,15 +85,17 @@ const FeedsContainer = (props) => {
                             <Link style={{textDecoration:'none'}} to={props.postedBy_id !== auth.user._id  ? '/profile/'+ props.postedBy_id : '/profile'}><h5>{props.name}</h5></Link>
                         </div>
                         {
-                            props.postedBy_id === auth.user._id 
-                            &&
-                            !post.deleting ?
-                            <Button onClick={() => DeletePost(props._id)}>
-                                <DeleteForeverRoundedIcon/>
-                            </Button>
-                            : 
-                            <Button>
-                                <Loader/>
+                            // <Button onClick={() => DeletePost(props._id)}>
+                            //     <DeleteForeverRoundedIcon/>
+                            // </Button>
+                            <Button 
+                                onClick={() => {
+                                    openDeleteModal();
+                                    setItem(props.item);
+                                    dispatch(setPostDetails(props.item));
+                                }}
+                            >
+                                <MoreHorizIcon/>
                             </Button>
                         }
                     </NameSection>
@@ -160,12 +178,6 @@ const FeedsContainer = (props) => {
                                     <input type="text" placeholder="Add a comment..." />
                                 </form>
                             </div>
-                            {/* {post.commenting 
-                            ?
-                            <Loader/>
-                            :
-                            <a><p style={{color:'#25a4f6', marginRight: '7px'}}>Post</p></a>
-                            } */}
                         </CommentDiv>
                     </DetailsSection>
         </FeedContainer>

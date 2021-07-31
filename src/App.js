@@ -5,6 +5,7 @@ import Explore from "./containers/explore/Explore";
 import Favourite from "./containers/favourite/Favourite";
 import Profile from './containers/profile/Profile';
 import SavedPost from './containers/profile/SavedPost/SavedPosts'
+import GoToPost from './containers/home/GoToPost'
 import {  BrowserRouter as Router , Switch, Route, useHistory } from "react-router-dom";
 import AuthComponents from "./components/AuthComponents/AuthComponents";
 import SignUpPage from "./containers/Signup/SignUpPage";
@@ -76,6 +77,7 @@ function App() {
             <PrivateRoute path="/favourite" component={Favourite}/>
             <PrivateRoute exact path="/profile" component={Profile}/>
             <PrivateRoute path="/profile/:userid" component={UserProfile}/>
+            <PrivateRoute exact path="/post/:id" component={GoToPost} />
           </Layout>
       </Switch>
       </Router>

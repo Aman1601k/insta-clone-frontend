@@ -3,6 +3,7 @@ import { postConstants } from "../actions/constants";
 const initialState = {
     posts: [],
     mypost: [],
+    postDetails: [],
     commenting:false,
     deleting:false,
     error:null,
@@ -101,6 +102,12 @@ export default (state = initialState, action) => {
             state={
                 ...state,
             }
+            break;
+        case postConstants.POST_DETAILS:
+            state = {
+                ...state,
+                postDetails: action.payload.post,
+            };
             break;
     }
     return state;

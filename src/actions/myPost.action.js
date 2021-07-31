@@ -20,3 +20,9 @@ export const mypost = () => {
       }
     };
   };
+
+  export const setPostDetails = (post) => {
+    return async (dispatch) => {
+      dispatch({ type: postConstants.POST_DETAILS, payload: { post } });
+    };
+  };
