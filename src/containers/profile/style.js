@@ -10,12 +10,11 @@ export const Body = styled.div`
     width:100%;
     height:auto;
     display: flex;
+    align-items: center;
     margin-top: 15px;
     flex-wrap: wrap;
     justify-content:flex-start;
     max-height:100%;
-    /* border: 1px solid black; */
-    /* background-color: yellow; */
 `
 
 export const ImageSection = styled.div`

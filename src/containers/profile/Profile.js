@@ -15,6 +15,7 @@ import Save from '../../components/svg/Save';
 import Tagged  from '../../components/svg/Tagged';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
 
 const Profile = () => {
     const history = useHistory();
@@ -170,6 +171,7 @@ const Profile = () => {
             </DetailsSection>
         </Header>
         {/* <CenteredTabs/> */}
+        <Divider/>
         <Body>
             {React.Children.toArray(
                     post.mypost?.map((item) => {

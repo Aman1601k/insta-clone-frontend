@@ -29,26 +29,22 @@ export const FeedContainer = styled.div`
     justify-content: center;
     height: calc(max-content + 10px);
     margin: 10px !important;
-    padding: 5px !important;
-    /* border: 1px dotted black; */
-
+    padding: 5px !important;    
     &:hover{
         filter:brightness(72%);
         ${Hover}{
             display: flex;
         }
     }
-    /* overflow: hidden; */
 `;
 
 export const Image = styled.div`
-    width: 100%;
-    /* position: absolute; */
-    height: max-content;
-    max-height:400px;
-    /* border: 1px dotted black; */
+    width: 293px;
+    height: 293px;
+    cursor: pointer;
     img{
         width: 100%;
-        object-fit: contain;
+        height: 100%;
+        object-fit: cover;
     }
 `;

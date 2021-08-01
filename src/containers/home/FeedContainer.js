@@ -1,6 +1,6 @@
 import React, { useRef ,useLayoutEffect, useState } from 'react'
 import styled, { css } from 'styled-components/macro';
-import {FeedContainer , NameSection , ImageSection , DetailsSection ,ViewComments, CommentDiv , LikeDiv ,ShowComment} from './style'
+import {FeedContainer , NameSection , ImageSection , DetailsSection ,ViewComments, CommentDiv , LikeDiv ,ShowComment , PostDiv} from './style'
 import Avatar from '@material-ui/core/Avatar';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import LikeSvg from '../../components/svg/LikeSvg'
@@ -99,9 +99,11 @@ const FeedsContainer = (props) => {
                             </Button>
                         }
                     </NameSection>
-                    <ImageSection>
-                        <img style={{height:"auto" , width:"100%" }} src={props.image} />
-                    </ImageSection>
+                    <PostDiv>
+                        <ImageSection>
+                            <img style={{height:"auto" , width:"100%" }} src={props.image} />
+                        </ImageSection>
+                    </PostDiv>
                     <DetailsSection>
                         <LikeDiv>
                             <div>

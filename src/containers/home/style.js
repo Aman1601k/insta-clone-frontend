@@ -58,13 +58,30 @@ export const NameSection = styled.div`
         }
     }
 `
+
+export const PostDiv = styled.div`
+    width: 614px;
+    height:614px;
+    cursor:pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
 export const ImageSection = styled.div`
-    width: 100%;
-    height: width;
+    height: fit-content;
+    max-height:614px;
+    display: flex;
+    justify-content: center;
     border-top: 1px solid lightgrey;
-    /* background-color:green; */
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 `
 export const DetailsSection = styled.div`
+    margin-top:7px;
     width: 100%;
     /* background-color:yellow; */
 `
