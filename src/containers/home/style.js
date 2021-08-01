@@ -4,42 +4,34 @@ export const Container = styled.div`
     width: 100%;
     display:flex;
     margin-top: 3vh;
-    /* background-color: red; */
 `
 
 export const LeftContainer = styled.div`
     width: 67%;
-    /* height: 100%; */
     max-width:615px;
     display: flex;
     flex-direction: column;
-    /* background-color:yellow; */
 `
 
 export const StoryContainer = styled.div`
     width:100%;
-    /* height: auto; */
     border: 1px solid lightgrey;
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
     overflow-x: hidden;
-    /* background-color: green; */
 `
 
 export const FeedContainer = styled.div`
     width:100%;
     height: max-content;
-    /* padding-bottom: 10px; */
     border: 1px solid lightgrey;
-    /* background-color: green; */
 `
 
 export const NameSection = styled.div`
     width: 87%;
     max-height: 60px ;
     margin: 1% 1% 1% 5%;
-    /* background-color:red; */
     display: flex;
     justify-content:space-between;
     align-items:center;
@@ -62,6 +54,7 @@ export const NameSection = styled.div`
 export const PostDiv = styled.div`
     width: 614px;
     height:614px;
+    max-height:614px;
     cursor:pointer;
     display: flex;
     align-items: center;
@@ -83,12 +76,10 @@ export const ImageSection = styled.div`
 export const DetailsSection = styled.div`
     margin-top:7px;
     width: 100%;
-    /* background-color:yellow; */
 `
 export const LikeDiv = styled.div`
     width: 100%;
     height: max-content;
-    /* border: 1px solid black; */
     margin: 2px 0 5px 0;
     display: flex;
     justify-content:space-between;
@@ -96,7 +87,6 @@ export const LikeDiv = styled.div`
     div{
         display: flex;
         justify-content: space-evenly;
-        /* width: 15%; */
         margin-left:5px;
     }
 `
@@ -106,8 +96,6 @@ export const ShowComment = styled.div`
   ::-webkit-scrollbar {
     display: none;
     }
-  /* display: flex; */
-  /* flex-direction: column-reverse; */
 `;
 
 export const CommentDiv = styled.div`

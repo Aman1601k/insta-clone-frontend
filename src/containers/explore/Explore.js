@@ -6,6 +6,7 @@ import LikeSvg from '../../components/svg/LikeSvg'
 import UnLikeSvg from '../../components/svg/UnLikeSvg'
 import CommentSvg from '../../components/svg/CommentSvg'
 import ShowFeedModal from './ShowFeedModal';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const Explore = () => {
     const dispatch = useDispatch();
@@ -30,7 +31,6 @@ const Explore = () => {
         <Wrapper>
                 {React.Children.toArray(
                     post.posts?.map((item) => {
-                        // console.log(item.photo)
                         return(
                             <>
                             <FeedContainer 
@@ -66,19 +66,4 @@ const Explore = () => {
 }
 
 export default Explore
-
-
-
-// _id = {item._id}
-// postedBy_id = {item.postedBy._id}
-// likesLength={item.likes.length}
-// likesUser={item.likes}
-// commentsLength={item.comments.length}
-// comments={item.comments}
-// name={item.postedBy?.name}
-// profilePicture={item.postedBy?.profilePicture}
-// caption={item.body}
-// image={item.photo}
-// createdAt={item.createdAt}
-// avatar={auth.user.profilePicture}
 
