@@ -31,7 +31,7 @@ const ShowFeedModal = (props) => {
               <Header>
                 <div>
                     <Avatar style={{width:'30px' , height: '30px' , margin: '14px 15px'}} alt="Remy Sharp" src={props.item?.postedBy?.profilePicture}/>
-                    <Link style={{textDecoration:'none' , cursor: 'pointer' }} to={props.item.postedBy?._id !== auth.user._id  ? '/profile/'+ props.item.postedBy?._id : '/profile'}><h5>{props.item.postedBy?.name}</h5></Link>
+                    <Link style={{textDecoration:'none' , cursor: 'pointer' }} to={props.item?.postedBy?._id !== auth.user._id  ? '/profile/'+ props.item.postedBy?._id : '/profile'}><h5>{props.item.postedBy?.name}</h5></Link>
                 </div>                
               </Header>
                 <Body>

@@ -1,6 +1,6 @@
 import React, { useRef ,useLayoutEffect, useState } from 'react'
 import styled, { css } from 'styled-components/macro';
-import {FeedContainer , NameSection , ImageSection , DetailsSection ,ViewComments, CommentDiv , LikeDiv ,ShowComment , PostDiv} from './style'
+import {FeedContainer , NameSection , ImageSection , DetailsSection ,ViewComments, CommentDiv , LikeDiv ,ShowComment } from './style'
 import Avatar from '@material-ui/core/Avatar';
 import DeleteForeverRoundedIcon from '@material-ui/icons/DeleteForeverRounded';
 import LikeSvg from '../../components/svg/LikeSvg'
@@ -85,9 +85,6 @@ const FeedsContainer = (props) => {
                             <Link style={{textDecoration:'none'}} to={props.postedBy_id !== auth.user._id  ? '/profile/'+ props.postedBy_id : '/profile'}><h5>{props.name}</h5></Link>
                         </div>
                         {
-                            // <Button onClick={() => DeletePost(props._id)}>
-                            //     <DeleteForeverRoundedIcon/>
-                            // </Button>
                             <Button 
                                 onClick={() => {
                                     openDeleteModal();
@@ -99,11 +96,9 @@ const FeedsContainer = (props) => {
                             </Button>
                         }
                     </NameSection>
-                    <PostDiv>
                         <ImageSection>
                             <img style={{height:"auto" , width:"100%" }} src={props.image} />
                         </ImageSection>
-                    </PostDiv>
                     <DetailsSection>
                         <LikeDiv>
                             <div>

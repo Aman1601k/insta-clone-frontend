@@ -4,6 +4,11 @@ export const Container = styled.div`
     width: 100%;
     display:flex;
     margin-top: 3vh;
+    
+    @media (max-width: 1000px) {
+        align-items: center;
+        justify-content: center;    
+    }
 `
 
 export const LeftContainer = styled.div`
@@ -11,6 +16,11 @@ export const LeftContainer = styled.div`
     max-width:615px;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 1000px) {
+        max-width :100% ;
+        width : 100%;
+    }
 `
 
 export const StoryContainer = styled.div`
@@ -40,7 +50,6 @@ export const NameSection = styled.div`
         display: flex;
         justify-content: space-evenly;
         align-items:center;
-        width: 32%;
 
         h5{
             color: black;
@@ -51,19 +60,10 @@ export const NameSection = styled.div`
     }
 `
 
-export const PostDiv = styled.div`
-    width: 614px;
-    height:614px;
-    max-height:614px;
-    cursor:pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
 
 export const ImageSection = styled.div`
-    height: fit-content;
-    max-height:614px;
+    height: 400px;
+    max-height:500px;
     display: flex;
     justify-content: center;
     border-top: 1px solid lightgrey;
@@ -128,12 +128,15 @@ export const RightContainer = styled.div`
     width: 293px;
     height: max-content;
     margin: 0 23px;
-    /* background-color:yellow; */
+    min-width: 250px;
+
+    @media (max-width: 1000px) {
+        display: none;
+    }
 `
 
 export const Logout = styled.div`
     width: 100%;
-    /* border: 1px solid black; */
 
     div{
         display: flex;

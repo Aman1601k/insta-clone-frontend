@@ -2,7 +2,6 @@ import Navbar from "./components/navbar/Navbar";
 import Home from "./containers/home/Home";
 import Message from "./containers/message/Message";
 import Explore from "./containers/explore/Explore";
-import Favourite from "./containers/favourite/Favourite";
 import Profile from './containers/profile/Profile';
 import SavedPost from './containers/profile/SavedPost/SavedPosts'
 import GoToPost from './containers/home/GoToPost'
@@ -74,7 +73,6 @@ function App() {
             <PrivateRoute path="/message" component={Message}/>
             <PrivateRoute exact path="/savedpost" component={SavedPost} />
             <PrivateRoute path="/explore" component={Explore }/>
-            <PrivateRoute path="/favourite" component={Favourite}/>
             <PrivateRoute exact path="/profile" component={Profile}/>
             <PrivateRoute path="/profile/:userid" component={UserProfile}/>
             <PrivateRoute exact path="/post/:id" component={GoToPost} />

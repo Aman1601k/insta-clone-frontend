@@ -3,12 +3,24 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
     height:max-content;
     width: 100%;
-    background-color:#fafafa;
+    background-color: #fafafa;
+    @media (max-width: 1000px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `
 
 export const Wrapper = styled.div`
-    /* height: 100vh; */
+    min-width: 68%;
     width: 68%;
-    /* background-color:#fafafa; */
     margin: 0% 16%;
+
+    @media (max-width: 1000px) {
+        min-width:90%;
+    }
+    @media (max-width: 500px) {
+        min-width:100%;
+    }
 `
+
