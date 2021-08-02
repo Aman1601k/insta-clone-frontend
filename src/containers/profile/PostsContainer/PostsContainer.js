@@ -11,7 +11,7 @@ const PostsContainer = (props) => {
     };    
 
     const handleClose = () => {
-        setOpen(false);
+        setOpen(false); 
     };
     return (
         <>

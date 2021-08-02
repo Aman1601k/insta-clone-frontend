@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/macro';
 import {Header ,ImageSection , DetailsSection , AvatarSection , NameSection ,Button, FollowerSection , BioSection ,Body ,AnchorTag} from './style'
 import Avatar from '@material-ui/core/Avatar';
@@ -7,6 +7,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { userProfile , followUser , unfollowUser } from '../../actions';
 import {useParams} from 'react-router-dom'
 import {Loader} from '../Login/style'
+import {PostDiv , Image} from './PostsContainer/style'
+import ShowFeedModal from '../explore/ShowFeedModal';
 const x = localStorage.getItem('user');
 const y = JSON.parse(x);
 
@@ -16,8 +18,16 @@ const UserProfile = () => {
     const auth = useSelector((state) => state.auth);
     const user = useSelector((state) => state.user);
     const {userid} = useParams()
-    console.log(userid)
+    const [items, setItems] = useState({})
+    const [open, setOpen] = useState(false);
 
+    const handleOpen = () => {  
+        setOpen(true);
+    };    
+
+    const handleClose = () => {
+        setOpen(false); 
+    };
     useEffect(() => {
         dispatch(userProfile(userid));
     }, [userid])
@@ -77,7 +87,17 @@ const UserProfile = () => {
             {React.Children.toArray(
                     user.userPost?.map((item) => {
                         return(
-                    <PostsContainer image = {item.photo} />
+                            <>
+                            <PostDiv onClick={() => {
+                                handleOpen();
+                                setItems(item);
+                            }}>
+                                <Image>
+                                    <img style={{ height:"100%" , width:"100%"}} src={item.photo} />
+                                </Image> 
+                            </PostDiv>
+                            <ShowFeedModal open={open} item={items} handleClose={handleClose}/>
+                            </>
                     )
                 })
             )}
