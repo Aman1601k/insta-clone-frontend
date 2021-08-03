@@ -51,10 +51,11 @@ export const NameSection = styled.div`
 export const Button = styled.button`
     padding: 3px ;
     height: 1.7rem;
-    margin: 4px 1rem;
+    margin: 10px 7px;
     border: 1px solid lightgrey; 
     background-color:#fff;
     border-radius: 5px;
+    cursor: pointer;
 `
 
 export const FollowerSection = styled.div`

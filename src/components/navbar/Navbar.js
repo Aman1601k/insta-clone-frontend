@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled, { css } from 'styled-components/macro';
-import { Container, Wrapper, Image, Search, NavIcons , Button } from "./style";
+import { NavContainer, Wrapper, Image, Search, NavIcons , Button } from "./style";
 import Avatar from "@material-ui/core/Avatar";
 import { Link, useLocation } from "react-router-dom";
 import HomeSvgActive from "../svg/HomeSvgActive";
@@ -34,7 +34,7 @@ function Navbar() {
   }, [location.pathname])
 
   return (
-    <Container>
+    <NavContainer>
       <Wrapper>
         <Image>
           <img
@@ -135,7 +135,7 @@ function Navbar() {
           })}
         </ModalContainer>
       </CustomModal>
-    </Container>
+    </NavContainer>
   );
 }
 

@@ -16,8 +16,6 @@ export const Hover = styled.span`
             color: white;
             margin: 0px 5px 4px 5px;
         }
-        /* justify-content:space-between; */
-        /* background-color:red; */
 `
 
 export const FeedContainer = styled.div`

@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CustomModal from "../home/PostModal";
 import PostsContainer from './PostsContainer/PostsContainer'
 import {useDispatch, useSelector} from 'react-redux'
-import { getFollowers, getFollowings, mypost, updateBio, updateProfilePicture } from '../../actions';
+import { getFollowers, getFollowings, mypost, signout, updateBio, updateProfilePicture } from '../../actions';
 import ModalContainer from '../ModalSmall/ModalContainer';
 import ChatModal from '../ModalSmall/ChatModal';
 import SimplePopover from '../../components/PopOver/Popover';
@@ -82,7 +82,6 @@ const Profile = () => {
 
     const openFollowing = () => {
         setFollowingModal(true);
-        // console.log("Open")
     };
 
     const closeFollowing = () => {
@@ -114,6 +113,7 @@ const Profile = () => {
                 <NameSection>
                     <p style={{fontSize:'28px' ,marginTop: '1px'}}>{auth.user.name}</p>
                     <Button onClick={handleOpen}>Edit profile</Button>
+                    <Button onClick={() => dispatch(signout())}>SignOut</Button>
                     <span>
                         <span onClick={openPopOver}>
                         <MoreVertIcon />
@@ -241,7 +241,8 @@ const Container  = styled.div`
 `;
 
 const UpdateButton = styled.button`
-    background-color: #74E8F4 ;
-    color: #fff;
-    border: none;
+    background-color: #fafafa ;
+    border: 1px dotted black;
+    color: black;
+    cursor: pointer;
 `

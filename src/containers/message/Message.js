@@ -430,14 +430,23 @@ const NoMsgContainer = styled.div`
         h4{
           font-size:22px;
           font-weight: 100;
+          @media (max-width:550px) {
+            font-size:17px;
+          }
         }
         p{
-            margin-top:-25px;
-            font-size: 14px;
-            color: #8e8e8e;
+          margin-top:-25px;
+          font-size: 14px;
+          color: #8e8e8e;
+          @media (max-width:550px) {
+            font-size:10px;
+          }
+          @media (max-width:377px) {
+            text-align:center;
+          }
         }
-  }
-`;
+      }
+      `;
 
 const ButtonStyle = styled(Button)`
     width: max-content;
@@ -445,15 +454,14 @@ const ButtonStyle = styled(Button)`
     /* margin-top:15px !important; */
     color: white !important;
     background-color: ${props => props.primary ? "#0095f6 !important"  : "lightblue !important" };
-
 `
+
 const ShareIconDiv = styled.div`
    width: 100%;
   height:96px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: yellow; */
   div{
     height:100%;
     width: 98px;
@@ -462,7 +470,12 @@ const ShareIconDiv = styled.div`
     align-items: center;
     border: 2px solid black;
     border-radius:55px;
+    @media (max-width:550px) {
+      height: 80%;
+      width: 80px;
+    }
   }
+    
   `;
 
   const DeleteButton = styled.button`

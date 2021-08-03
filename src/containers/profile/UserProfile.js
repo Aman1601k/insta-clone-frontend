@@ -9,6 +9,7 @@ import {useParams} from 'react-router-dom'
 import {Loader} from '../Login/style'
 import {PostDiv , Image} from './PostsContainer/style'
 import ShowFeedModal from '../explore/ShowFeedModal';
+import { Divider } from '@material-ui/core';
 const x = localStorage.getItem('user');
 const y = JSON.parse(x);
 
@@ -77,12 +78,12 @@ const UserProfile = () => {
                 <BioSection>
                     <strong>{user.userprofile?.name}</strong>
                     <p>
-                        I D G A F
+                        {user.userprofile?.bio}
                     </p>
                 </BioSection>
-
             </DetailsSection>
         </Header>
+        <Divider/>
         <Body>
             {React.Children.toArray(
                     user.userPost?.map((item) => {

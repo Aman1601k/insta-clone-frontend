@@ -148,7 +148,7 @@ const FeedsContainer = (props) => {
                            {React.Children.toArray(
                                props.comments.map(comment => {
                                    return (
-                                    <div style={{display: 'flex' , alignItems: 'center' , justifyContent: 'space-between', margin:'-25px 15px -15px 15px' }}>
+                                    <div style={{display: 'flex' , alignItems: 'center' , justifyContent: 'space-between', margin:'-10px 15px -15px 15px' }}>
                                         <div style={{display: 'flex' , alignItems: 'center'}}>
                                             <h5>{comment.postedBy.name}</h5>
                                             <p style={{fontSize:'12px'  , fontWeight:'100' , marginLeft:'10px'}}>{comment.text}</p>

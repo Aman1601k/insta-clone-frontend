@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components/macro';
 
-export const Container = styled.div`
+export const NavContainer = styled.div`
     border-bottom: 1px solid lightgrey;
     height: 54px;
     background-color:#fff;
-`
+    `
 export const Wrapper = styled.div`
     display: flex;
     align-items: center;
@@ -13,6 +13,10 @@ export const Wrapper = styled.div`
     margin: 0 15%;
     width: 64%;
     padding: 0 20px;
+    @media (max-width: 800px) {
+        margin: 0%;
+        width:inherit;
+}
 `
 
 export const Image = styled.div`
@@ -36,13 +40,21 @@ export const Search = styled.input.attrs({
     padding: 7px;
     text-align: center;
     border:solid 1px rgba(var(--b6a,219,219,219),1);
-`
+    @media (max-width: 560px) {
+        width: 150px;
+    }
+    @media (max-width: 460px) {
+        width: 100px;
+    }
+    @media (max-width: 370px) {
+        display:none;
+    }
+    `
 
 export const NavIcons = styled.div`
     width: 22%;
     display:flex;
     justify-content:space-evenly;
-    /* align-items:center; */
 `
 export const Button = styled.button`
     background: none;
