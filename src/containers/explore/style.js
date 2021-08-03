@@ -6,6 +6,10 @@ export const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    @media (max-width: 730px){
+        justify-content: center;
+    }
 `
 
 export const Hover = styled.span`

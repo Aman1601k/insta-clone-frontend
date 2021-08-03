@@ -111,7 +111,7 @@ const Profile = () => {
             </ImageSection>
             <DetailsSection>
                 <NameSection>
-                    <p style={{fontSize:'28px' ,marginTop: '1px'}}>{auth.user.name}</p>
+                    <p>{auth.user.name}</p>
                     <Button onClick={handleOpen}>Edit profile</Button>
                     <Button onClick={() => dispatch(signout())}>SignOut</Button>
                     <span>
@@ -170,7 +170,6 @@ const Profile = () => {
                 </BioSection>
             </DetailsSection>
         </Header>
-        {/* <CenteredTabs/> */}
         <Divider/>
         <Body>
             {React.Children.toArray(

@@ -3,11 +3,14 @@ import styled from 'styled-components/macro';
 export const Container = styled.div`
   width: 80%;
   height: 89vh;
-  /* min-width:840px; */
   margin: 20px 63px;
-  /* z-index:5; */
   display: flex;
   background-color:#fff;
+  @media (max-width:500px){
+    max-width :100%;
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 export const LeftContainer = styled.div`
@@ -51,7 +54,7 @@ export const PersonChatBox = styled.div`
       font-size:14px;
     }
   }
-
+  
   span{
     width: 8px;
     height: 8px;
@@ -62,9 +65,9 @@ export const PersonChatBox = styled.div`
   }
   
   &:hover{
-      background-color:#fafafa;
-    }
-    `;
+    background-color:#fafafa;
+  }
+  `;
 
 export const RightContainer = styled.div`
   width: 60%;

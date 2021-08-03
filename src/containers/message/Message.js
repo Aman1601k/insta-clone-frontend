@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Avatar } from "@material-ui/core";
 import SimplePopover from '../../components/PopOver/Popover';
-// import NoMessageField from "./NoMessageField";
-// import PersonalMessageField from "./PersonalMessageField";
 import ReactScrollableFeed from 'react-scrollable-feed';
 import {
   getConversation,
@@ -34,6 +32,8 @@ import ModalSmall from '../ModalSmall/ChatModal'
 import ModalContainer from '../ModalSmall/ModalContainer'
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Drawer from '../../components/Drawer/Drawer'
+import useWindowSize from '../../helpers/useWindowSize'
 
 const Message = () => {
   const auth = useSelector((state) => state.auth);
@@ -45,7 +45,9 @@ const Message = () => {
   const socket = useRef(io("ws://localhost:5500"));
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [height, width] = useWindowSize();
 
   const handleOpen = () => {
     setOpen(true);
@@ -53,6 +55,14 @@ const Message = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+  
+  const handleOpenDrawer = () => {
+    setOpenDrawer(true);
+  };
+
+  const handleCloseDrawer = () => {
+    setOpenDrawer(false);
   };
 
   const MessageText = (e , msgtext) => {
@@ -91,7 +101,6 @@ const Message = () => {
     socket.current.on("getMessage" , (data) => {
       setArrivalMessage({
         sender:data.senderId,
-        // receiver:convo.userDetails[0]?._id,
         text: data.text,
         createdAt: Date.now()
       })
@@ -158,6 +167,15 @@ const Message = () => {
   return (
     <Container>
       <LeftContainer>
+        <SimplePopover anchorEl={anchorEl} handleClose={closePopOver}>
+              <DeleteLayout onClick={() => conversationDelete()}>
+                <p>Delete</p>
+                <span>
+                  <DeleteOutlineOutlinedIcon />
+                </span>
+              </DeleteLayout>
+        </SimplePopover>
+        <Drawer open={openDrawer} onClose={handleCloseDrawer} width="287px">
         <Header>
           <h5>{auth.user.name}</h5>
           <KeyboardArrowDownIcon />
@@ -166,14 +184,6 @@ const Message = () => {
           </div>
         </Header>
         <Inbox>
-          <SimplePopover anchorEl={anchorEl} handleClose={closePopOver}>
-              <DeleteLayout onClick={() => conversationDelete()}>
-                <p>Delete</p>
-                <span>
-                  <DeleteOutlineOutlinedIcon />
-                </span>
-              </DeleteLayout>
-            </SimplePopover>
           {React.Children.toArray(
             user.userChats?.map((item) => {
               return (
@@ -209,6 +219,7 @@ const Message = () => {
             })
           )}
         </Inbox>
+        </Drawer>
       </LeftContainer>
       <RightContainer>
         {!changeConvo ? (
@@ -221,7 +232,7 @@ const Message = () => {
                     <div>
                         <h4>Your Messages</h4>
                         <p>Send private photos and messages to a friend or group</p>
-                        <ButtonStyle variant="contained" primary >
+                        <ButtonStyle variant="contained" primary onClick={handleOpenDrawer} >
                                         Send Message
                         </ButtonStyle>
                     </div>
