@@ -110,27 +110,36 @@ const Container  = styled.div`
     height: 600px;
     display:flex;
     margin-top:50px;
-`;
+    @media (max-width:600px) {
+      width: 100%;
+      height: 400px;
+    }
+    `;
+
 const Image  = styled.div`
-    /* height: 100%; */
     width: 70%;
     border-right: 1px solid lightgrey;
     div{
       width: 100%;
       height: 100%;
       img{
-      object-fit: cover;
+        object-fit: cover;
         width:100%;
         height:100%;
+      }
     }
+    @media (max-width:600px){
+      width: 60%;
     }
-    
-`;
+    `;
 
 const DetailsSection = styled.div`
   width:30%;
   background-color:white;
-`
+  @media (max-width:600px){
+    width: 40%;
+  }
+  `
 
 const Header = styled.div`
   height:max-content;
@@ -147,9 +156,9 @@ const Body = styled.div`
   height: max-content;
   overflow-y: scroll;
   min-height:450px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* background-color:red; */
+  @media (max-width:600px) {
+    min-height: 250px;
+  }
   div{
       height: max-content;
       display: flex;

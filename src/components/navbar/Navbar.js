@@ -145,10 +145,18 @@ const ModalContainer = styled.div`
   position: absolute;
   top: 58px;
   left: 29vw;
-  width:30%;
+  width:460px;
   max-height:400px;
   height:max-content;
   background-color:#fafafa90;
+  @media(max-width:650px) {
+    width:400px;
+    left:18vw;
+  }
+  @media(max-width:500px) {
+    width:300px;
+    left:15vw;
+  }
   div{
     /* border: 1px dashed lightgrey; */
     padding:10px;

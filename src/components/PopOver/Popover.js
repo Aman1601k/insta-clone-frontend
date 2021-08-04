@@ -27,6 +27,7 @@ export default function SimplePopover({
   return (
     <div>
       <Popover
+        style={{zIndex:'999999'}}
         id={id}
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}

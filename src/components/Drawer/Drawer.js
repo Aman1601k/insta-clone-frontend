@@ -18,7 +18,6 @@ export default function Drawer({
           open={open}
           onClose={onClose}
           onOpen={onOpen}
-          style={{ zIndex: '99999' }}
         >
           <Wrapper width={width} height={height}>
             {children}
