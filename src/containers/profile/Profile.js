@@ -213,7 +213,7 @@ const Profile = () => {
 export default Profile
 
 const Container  = styled.div`
-  width: 30vw; 
+  width: 390px; 
   height:max-content;
   background-color:#fff;
   border:1px solid lightgrey;
@@ -233,7 +233,7 @@ const Container  = styled.div`
             font-weight: 300;
         }
         input{
-            width:15vw;
+            width:192px;
             text-decoration: none;
         }
   }

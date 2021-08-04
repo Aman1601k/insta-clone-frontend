@@ -114,8 +114,15 @@ const Container  = styled.div`
     /* height:max-content; */
     /* border: 1px solid red; */
     /* background-color: red; */
-    /* justify-content:center; */
-`;
+    @media (max-width:900px){
+      width: 95%;
+      justify-content:center;
+    }
+    @media (max-width:650px){
+      width: 100%;
+      height:450px;
+    }
+    `;
 const Image  = styled.div`
     /* height: 100%; */
     width: 70%;
@@ -124,18 +131,23 @@ const Image  = styled.div`
       width: 100%;
       height: 100%;
       img{
-      object-fit: cover;
+        object-fit: cover;
         width:100%;
         height:100%;
+      }
     }
+    @media (max-width:650px){
+      width: 60%;
     }
-    
-`;
+    `;
 
 const DetailsSection = styled.div`
   width:30%;
   background-color:white;
-`
+  @media (max-width:650px){
+    width: 40%;
+  }
+  `
 
 const Header = styled.div`
   height:max-content;
@@ -152,16 +164,24 @@ const Body = styled.div`
   height: max-content;
   overflow-y: scroll;
   min-height:450px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* background-color:red; */
+  @media (max-width:650px){
+    min-height:300px;
+  }
   div{
       height: max-content;
       display: flex;
       align-items: center;
+      @media (max-width:650px){
+        h5{
+        font-size:10px;
+      }
+    }
       p{
         font-size: small;
         margin: 0px 10px;
+        @media (max-width:650px){
+        font-size:10px ;
+    }
       }
     }
 `
@@ -174,12 +194,19 @@ const CommentSection = styled.div`
     justify-content:flex-start;
     align-self: normal;
     div{
-
+      @media (max-width:650px){
+        h5{
+        font-size:10px ;
+      }
+      }
+      
     }
     p{
       font-size:12px;
       font-weight:100; 
-      /* margin-left:10px; */
+      @media (max-width:650px){
+        font-size:10px ;
+      }
     }
   }
 `

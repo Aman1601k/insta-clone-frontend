@@ -9,23 +9,31 @@ export const Container = styled.div`
     justify-content:center;
     align-items:center;
     background-color:#fafafa;
-`
+    `
 export const Body = styled.div`
     width: 80%;
     height: 90%;
     display: flex;
     /* flex-direction:row; */
     margin-left: 10vw;
-
-`
+    @media (max-width:1024px) {
+        justify-content:center;
+        align-items:center;
+        margin-left: 0;
+    }
+    
+    `
 export const Image = styled.div`
     width: 454px;
     height: 620px;
     margin-left: 75px;
     margin-top: 20px;
     position:relative;
+    @media (max-width:650px) {
+        display: none;
+    }
     /* background-color:red; */
-`
+    `
 
 export const CarouselContainer = styled.div`
     width:240px;
@@ -33,14 +41,14 @@ export const CarouselContainer = styled.div`
     margin: 99px 0 0 151px;
     top: 0;
     position:absolute;
-`
+    `
 
 export const CarouselDiv = styled.div`
     width:240px;
     height: 427px;
     z-index:5;
     /* background-color:green; */
-`
+    `
 
 export const FormContainer = styled.div`
     width: 350px;
@@ -50,6 +58,10 @@ export const FormContainer = styled.div`
     margin-top: 20px;
     display: flex;
     flex-direction: column;
+    @media (max-width:360px) {
+        width: 350px;
+        align-items: center;
+    }
 `
 export const Form1 = styled.div`
     width: 350px;

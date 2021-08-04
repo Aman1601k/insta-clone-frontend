@@ -64,6 +64,29 @@ export const NameSection = styled.div`
     span{
       position: absolute;
       right: 30px;
+      @media (max-width:700px) {
+        position: absolute;
+        right: 5%;
+      }
+      @media (max-width:600px) {
+        position: absolute;
+        right: 1%;
+      }
+      @media (max-width:550px) {
+        position: absolute;
+        right: 8%;
+        top:120%;
+      }
+      @media (max-width:450px) {
+        position: absolute;
+        right: 0%;
+        top:120%;
+      }
+      @media (max-width:400px) {
+        position: absolute;
+        right: -13%;
+        top:120%;
+      }
     }
     p{
       font-size:28px;
@@ -127,7 +150,6 @@ export const BioSection = styled.div`
     @media (max-width: 355px){
       font-size:14px;
     }
-    /* background-color:brown; */
 `
 
 export const Content = styled.div`
