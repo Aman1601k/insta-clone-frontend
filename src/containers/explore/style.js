@@ -6,8 +6,41 @@ export const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-
+    
     @media (max-width: 730px){
+        justify-content: center;
+    }
+    @media (max-width: 1430px){
+        width: 967px;
+        margin-left: -10px;
+    }
+    @media (max-width: 1310px){
+        width: 967px;
+        margin-left: -50px;
+    }
+    @media (max-width: 1290px){
+        width: 967px;
+        margin-left: -60px;
+    }
+    @media (max-width: 1220px){
+        width: 967px;
+        margin-left: -70px;
+    }
+    @media (max-width: 1170px){
+        width: 967px;
+        margin-left: -80px;
+    }
+    @media (max-width: 1110px){
+        width: 967px;
+        margin-left: -105px;
+    }
+    @media (max-width: 1050px){
+        width: 967px;
+        margin-left: -136px;
+    }
+    @media (max-width: 1024px){
+        width: 100%;
+        margin-left: 0;
         justify-content: center;
     }
 `

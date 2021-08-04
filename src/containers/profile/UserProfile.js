@@ -118,6 +118,7 @@ const FollowButton = styled.button`
     background-color:#0095f6;
     color: #fff;
     border-radius: 5px;
+    cursor: pointer;
 `
 const UnFollowButton = styled.button`
     padding: 3px ;

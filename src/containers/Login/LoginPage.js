@@ -1,8 +1,9 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import {FormContainer,Form1,Form2,Form3,Form4,LoginForm,TextFieldStyle,ButtonStyle,} from "../../components/AuthComponents/style";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link , useHistory } from "react-router-dom";
 import AuthComponents from "../../components/AuthComponents/AuthComponents";
+import Info from "../../components/Info/Info";
 import {Error} from '../Signup/style'
 import { Redirect } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,6 +37,7 @@ const LoginPage = () => {
 
   return (
     <AuthComponents>
+      <Info/>
       <FormContainer>
         <Form1>
           <img
@@ -77,7 +79,7 @@ const LoginPage = () => {
                 cursor: "pointer",
               }}
             >
-              <Link to="/reset">Forget Password?</Link>
+              <Link style={{textDecoration:'none' , color:'black'}} to="/reset">Forget Password?</Link>
             </p>
           </LoginForm>
         </Form1>

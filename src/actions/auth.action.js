@@ -70,7 +70,7 @@ export const isUserLoggedIn = () => {
         }else{
             dispatch({ 
                 type: authConstants.LOGIN_FAILURE,
-                payload:{ error: 'User not login'  }
+                payload:{ error: ''}
             });
         }
     }

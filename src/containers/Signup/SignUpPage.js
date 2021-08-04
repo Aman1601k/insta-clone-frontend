@@ -3,6 +3,7 @@ import {FormContainer, Form1, Form2, Form3, Form4, LoginForm, TextFieldStyle, Bu
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Link , useHistory} from 'react-router-dom'
 import AuthComponents from "../../components/AuthComponents/AuthComponents";
+import Info from "../../components/Info/Info";
 import {Error , UploadButton} from './style';
 import { signup } from '../../actions';
 import { useDispatch, useSelector } from "react-redux";
@@ -39,6 +40,7 @@ const SignUpPage = () => {
     }
     return (
         <AuthComponents>
+            <Info/>
             <FormContainer>
             <Form1 style={{height:"550px"}}>
                 <img style={{marginLeft: '65px' ,marginTop: '25px'}} src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png" />

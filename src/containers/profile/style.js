@@ -19,8 +19,38 @@ export const Body = styled.div`
     justify-content:flex-start;
     max-height:100%;
 
-    @media (max-width: 1000px){
-      justify-content: center;
+    @media (max-width: 1430px){
+        width: 967px;
+        margin-left: -10px;
+    }
+    @media (max-width: 1310px){
+        width: 967px;
+        margin-left: -50px;
+    }
+    @media (max-width: 1290px){
+        width: 967px;
+        margin-left: -60px;
+    }
+    @media (max-width: 1220px){
+        width: 967px;
+        margin-left: -70px;
+    }
+    @media (max-width: 1170px){
+        width: 967px;
+        margin-left: -80px;
+    }
+    @media (max-width: 1110px){
+        width: 967px;
+        margin-left: -105px;
+    }
+    @media (max-width: 1050px){
+        width: 967px;
+        margin-left: -136px;
+    }
+    @media (max-width: 1024px){
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
     }
     `
 
@@ -61,6 +91,7 @@ export const NameSection = styled.div`
     height: 3rem;
     margin-top: 2%;
     position: relative;
+    align-items: end;
     span{
       position: absolute;
       right: 30px;

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
 export const NavContainer = styled.div`
     border-bottom: 1px solid lightgrey;
@@ -19,7 +20,7 @@ export const Wrapper = styled.div`
 }
 `
 
-export const Image = styled.div`
+export const Image = styled(Link)`
     margin-top: 7px;
     max-width: 100%;
     max-height: 100%;

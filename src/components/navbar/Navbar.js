@@ -36,7 +36,7 @@ function Navbar() {
   return (
     <NavContainer>
       <Wrapper>
-        <Image>
+        <Image to='/' onClick={() => localStorage.setItem("location" , "home")}>
           <img
             style={{ width: "103px", height: "29px" }}
             src="https://www.instagram.com/static/images/web/mobile_nav_type_logo-2x.png/1b47f9d0e595.png"
@@ -50,9 +50,11 @@ function Navbar() {
         value={search} />
         <NavIcons>
           {localStorage.getItem("location") === "home" ? (
-            <Button>
-              <HomeSvgActive />
-            </Button>
+            <Link to="/">
+              <Button onClick={() => localStorage.setItem("location" , "home")}>
+                <HomeSvgActive />
+              </Button>
+            </Link>
           ) : (
             <Link to="/">
               <Button onClick={() => localStorage.setItem("location" , "home")}>
@@ -61,9 +63,11 @@ function Navbar() {
             </Link>
           )}
           {localStorage.getItem("location")  === "message" ? (
-            <Button>
-              <MessageSvgActive />
-            </Button>
+            <Link to="/message">
+              <Button onClick={() => localStorage.setItem("location" , "message")}>
+                <MessageSvgActive />
+              </Button>
+            </Link>
           ) : (
             <Link to="/message">
               <Button onClick={() => localStorage.setItem("location" , "message")}>
@@ -72,9 +76,11 @@ function Navbar() {
             </Link>
           )}
           {localStorage.getItem("location")  === "explore" ? (
-            <Button>
-              <ExploreSvgActive />
-            </Button>
+            <Link to="/explore">
+              <Button onClick={() => localStorage.setItem("location" , "explore")}>
+                <ExploreSvgActive />
+              </Button>
+            </Link>
           ) : (
             <Link to="/explore">
               <Button onClick={() => localStorage.setItem("location" , "explore")}>
@@ -82,31 +88,23 @@ function Navbar() {
               </Button>
             </Link>
           )}
-          {/* {localStorage.getItem("location")  === "fav" ? (
-            <Button>
-              <FavSvgActive />
-            </Button>
-          ) : (
-            <Link to="/favourite">
-              <Button onClick={() => localStorage.setItem("location" , "fav")}>
-                <FavSvgInActive />
-              </Button>
-            </Link>
-          )} */}
           {localStorage.getItem("location")  === "profile" ? (
-            <Button>
-               <Avatar
-                style={{
-                    width: "20px",
-                    height: "20px",
-                    border: "3px solid black",
-                }}
-                src={auth.user.profilePicture}
-                /> 
-            </Button>
-          ) : (
             <Link to="/profile">
               <Button>
+                <Avatar
+                  style={{
+                      width: "20px",
+                      height: "20px",
+                      border: "3px solid black",
+                  }}
+                  onClick={() => localStorage.setItem("location" , "profile")}
+                  src={auth.user.profilePicture}
+                  /> 
+              </Button>
+            </Link>
+          ) : (
+                <Link to="/profile">
+            <Button>
                   <Avatar
                         style={{ width: "20px", height: "20px" }}
                         onClick={() => localStorage.setItem("location" , "profile")}

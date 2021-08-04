@@ -47,15 +47,14 @@ export const CarouselDiv = styled.div`
     width:240px;
     height: 427px;
     z-index:5;
-    /* background-color:green; */
     `
 
 export const FormContainer = styled.div`
     width: 350px;
-    height: 606px;
+    height: 520px;
     z-index:6;
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     @media (max-width:360px) {
