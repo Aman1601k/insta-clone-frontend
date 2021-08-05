@@ -170,11 +170,17 @@ export const FollowerSection = styled.div`
       @media (max-width: 355px){
         font-size:10px;
       }
+      @media (max-width: 310px){
+        font-size:9px;
+      }
     }
     p{
       font-size: 12px;
       @media (max-width: 355px){
         font-size:10px;
+      }
+      @media (max-width: 310px){
+        font-size:9px;
       }
     }
 `
@@ -186,12 +192,12 @@ export const AnchorTag = styled.p`
 export const BioSection = styled.div`
     width:100%;
     height: 6rem;
-    margin-top: 15px;
+    margin-top: 25px;
     p{
       margin: 3px 0;
     }
     @media (max-width: 355px){
-      font-size:14px;
+      font-size:12px;
     }
 `
 
