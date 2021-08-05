@@ -1,14 +1,15 @@
 import styled from 'styled-components/macro';
 
 export const Header = styled.div`
-    height: 27vh;
+    height: 21vh;
     padding: 2rem;
     display: flex;
     margin-bottom: 3rem;
     @media(max-width:1000px){
       width: 100%;
-    }
+    }    
 `
+
 export const Body = styled.div`
     width:100%;
     height:auto;
@@ -74,6 +75,7 @@ export const AvatarSection = styled.div`
     @media (max-width: 400px){
       height: 90px;
       width: 90px;
+      margin-left: -20px;
     }
 
     `
@@ -92,6 +94,7 @@ export const NameSection = styled.div`
     margin-top: 2%;
     position: relative;
     align-items: end;
+    /* align-items: center; */
     span{
       position: absolute;
       right: 30px;
@@ -137,16 +140,22 @@ export const Button = styled.button`
     height: 1.7rem;
     margin: 10px 7px;
     font-size:14px;
+    min-width: 56px;
     border: 1px solid lightgrey; 
     background-color:#fff;
     border-radius: 5px;
     cursor: pointer;
     @media (max-width: 506px){
-      height: 1.6rem;
+      height: max-content;
       font-size:12px;
     }
     @media (max-width: 460px){
       font-size:10px;
+      margin:10 6px;
+    }
+    @media (max-width: 350px){
+      font-size:8px;
+      margin:10px 3px;
     }
     `
 
@@ -178,6 +187,9 @@ export const BioSection = styled.div`
     width:100%;
     height: 6rem;
     margin-top: 15px;
+    p{
+      margin: 3px 0;
+    }
     @media (max-width: 355px){
       font-size:14px;
     }

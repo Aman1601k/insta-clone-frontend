@@ -1,6 +1,6 @@
 import React, { useEffect ,useState} from 'react'
 import styled from 'styled-components/macro';
-import {Header ,ImageSection , DetailsSection , AvatarSection , NameSection ,Button, FollowerSection , BioSection ,Body ,AnchorTag , Content , PopoverContainer} from './style'
+import {Header ,ImageSection , DetailsSection , AvatarSection , NameSection ,Button, FollowerSection , BioSection ,Body ,AnchorTag , Content , PopoverContainer } from './style'
 import Avatar from '@material-ui/core/Avatar';
 import CustomModal from "../home/PostModal";
 import PostsContainer from './PostsContainer/PostsContainer'
@@ -15,7 +15,6 @@ import Save from '../../components/svg/Save';
 import Tagged  from '../../components/svg/Tagged';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { useHistory } from 'react-router-dom';
-import Divider from '@material-ui/core/Divider';
 
 const Profile = () => {
     const history = useHistory();
@@ -170,7 +169,7 @@ const Profile = () => {
                 </BioSection>
             </DetailsSection>
         </Header>
-        <Divider/>
+        <hr size="1" width="100%" color="lightgrey" marginTop="40px"/>
         <Body>
             {React.Children.toArray(
                     post.mypost?.map((item) => {
