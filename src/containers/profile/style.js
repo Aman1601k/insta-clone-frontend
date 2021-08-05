@@ -4,7 +4,8 @@ export const Header = styled.div`
     height: 21vh;
     padding: 2rem;
     display: flex;
-    margin-bottom: 3rem;
+    margin-bottom: 10px;
+    min-height: 200px;
     @media(max-width:1000px){
       width: 100%;
     }    
