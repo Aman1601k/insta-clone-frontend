@@ -171,7 +171,7 @@ export const FollowerSection = styled.div`
         font-size:10px;
       }
       @media (max-width: 310px){
-        font-size:9px;
+        font-size:8px;
       }
     }
     p{
@@ -180,7 +180,7 @@ export const FollowerSection = styled.div`
         font-size:10px;
       }
       @media (max-width: 310px){
-        font-size:9px;
+        font-size:8px;
       }
     }
 `

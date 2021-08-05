@@ -95,7 +95,7 @@ const Home = () => {
                         <Link style={{ textDecoration:'none' }}><p style={{ fontSize:'12px' ,marginRight: '7px' , cursor:'pointer'}}>See All</p></Link>
                     </div>
                     {React.Children.toArray(
-                        user.suggestedUser?.map((item) => {
+                        user.suggestedUser?.slice(-5).map((item) => {
                             if(item._id === auth.user._id){
                                 return
                             }
