@@ -91,9 +91,11 @@ export const NameSection = styled.div`
     width:100%;
     display:flex;
     height: 3rem;
-    margin-top: 2%;
+    min-height: 45px;
+    margin-top: 10px;
     position: relative;
     align-items: end;
+    /* border: 1px solid red; */
     /* align-items: center; */
     span{
       position: absolute;
@@ -161,10 +163,10 @@ export const Button = styled.button`
 
 export const FollowerSection = styled.div`
     width:100%;
-    height: 1.2rem;
-    margin-top: 2%;
+    height: max-content;
+    margin-top: 5px;
     display: flex;
-    
+    /* border: 1px solid black; */
     strong{
       font-size: 12px;
       @media (max-width: 355px){
@@ -191,8 +193,9 @@ export const AnchorTag = styled.p`
 
 export const BioSection = styled.div`
     width:100%;
-    height: 6rem;
-    margin-top: 25px;
+    height: max-content;
+    margin-top: 5px;
+    /* border: 1px solid lightgrey; */
     p{
       margin: 3px 0;
     }
