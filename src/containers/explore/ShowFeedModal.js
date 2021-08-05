@@ -60,9 +60,9 @@ const ShowFeedModal = (props) => {
                   <div style={{display: 'flex', width:'100%' ,justifyContent: 'space-between',marginLeft:'5px', padding: '5px 0px 0px 5px' }}>
                     <div style={{display: 'flex' , width: '90px' , justifyContent: 'space-evenly'}}>
                       {
-                      props.item?.likes?.length === 0 ?
-                        <LikeSvg/> :
-                        <UnLikeSvg/> 
+                      props.item?.likes?.includes(auth.user._id) ?
+                      <UnLikeSvg/>: 
+                      <LikeSvg/> 
                       }
                       <CommentSvg/>
                       <ShareSvg/> 
@@ -90,13 +90,6 @@ const ShowFeedModal = (props) => {
                     </div>
                   </div>
                     <p>{props.item.likes?.length} likes</p>
-                      {/* <div>
-                          <Button><EmojiSvg/></Button>
-                          <form >
-                              <input type="text" placeholder="Add a comment..." />
-                          </form>
-                          <a><p style={{color:'#25a4f6', marginRight: '7px'}}>Post</p></a>
-                      </div> */}
                 </Footer>
             </DetailsSection>
           </Container>

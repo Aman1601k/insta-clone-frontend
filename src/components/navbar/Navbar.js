@@ -98,7 +98,7 @@ function Navbar() {
                       border: "3px solid black",
                   }}
                   onClick={() => localStorage.setItem("location" , "profile")}
-                  src={auth.user.profilePicture}
+                  src={auth?.user?.profilePicture}
                   /> 
               </Button>
             </Link>
@@ -144,7 +144,7 @@ const ModalContainer = styled.div`
   top: 58px;
   left: 29vw;
   width:460px;
-  max-height:400px;
+  max-height:max-content;
   height:max-content;
   background-color:#fafafa90;
   @media(max-width:650px) {
