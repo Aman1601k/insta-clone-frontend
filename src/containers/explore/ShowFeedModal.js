@@ -46,10 +46,10 @@ const ShowFeedModal = (props) => {
                                    return (
                                     <div>
                                         <div>
-                                        <Avatar style={{width:'30px' , height: '30px' , margin: '14px 15px'}} alt="Remy Sharp" src={comment.postedBy?.profilePicture}/>
-                                        <Link style={{textDecoration:'none' , cursor: 'pointer'}} to={props.item.postedBy?._id !== auth.user._id  ? '/profile/'+ props.item.postedBy?._id : '/profile'}><h5>{comment.postedBy.name}</h5></Link>
+                                        <Avatar style={{width:'30px' , height: '30px' , margin: '14px 15px'}} alt="Remy Sharp" src={comment?.postedBy?.profilePicture}/>
+                                        <Link style={{textDecoration:'none' , cursor: 'pointer'}} to={props?.item?.postedBy?._id !== auth.user._id  ? '/profile/'+ props?.item?.postedBy?._id : '/profile'}><h5>{comment?.postedBy?.name}</h5></Link>
                                         </div>
-                                            <p>{comment.text}</p>
+                                            <p>{comment?.text}</p>
                                     </div>
                                 )
                             })

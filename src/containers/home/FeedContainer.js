@@ -146,14 +146,14 @@ const FeedsContainer = (props) => {
                             </ViewComments>
                         <ShowComment ref={scrollRef}>
                            {React.Children.toArray(
-                               props.comments.map(comment => {
+                               props.comments?.map(comment => {
                                    return (
                                     <div style={{display: 'flex' , alignItems: 'center' , justifyContent: 'space-between', margin:'-10px 15px -15px 15px' }}>
                                         <div style={{display: 'flex' , alignItems: 'center'}}>
-                                            <h5>{comment.postedBy.name}</h5>
-                                            <p style={{fontSize:'12px'  , fontWeight:'100' , marginLeft:'10px'}}>{comment.text}</p>
+                                            <h5>{comment?.postedBy?.name}</h5>
+                                            <p style={{fontSize:'12px'  , fontWeight:'100' , marginLeft:'10px'}}>{comment?.text}</p>
                                         </div>
-                                        {comment.postedBy._id === auth.user._id && 
+                                        {comment?.postedBy?._id === auth?.user?._id && 
                                         <Button onClick={() => DeleteComment(props._id ,comment._id) }><DeleteForeverRoundedIcon/></Button>
                                         }
                                     </div>

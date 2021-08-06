@@ -46,7 +46,7 @@ const Home = () => {
                         React.Children.toArray(
                             post.posts?.map((item) => {
                                 return(
-                            <Avatar style={{width:'66px' , height: '66px' , margin: '14px 15px'}} alt="Remy Sharp" src={auth.user.profilePicture}/>
+                            <Avatar style={{width:'66px' , height: '66px' , margin: '14px 15px'}} alt="Remy Sharp" src={item?.postedBy?.profilePicture}/>
                             )
                         })
                         )}
